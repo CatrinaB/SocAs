@@ -1,0 +1,2 @@
+# Social-network-for-disabled-people-with-assistant-recommandations
+With this project, I want to implement a social network for disabled people who need assistance and for whom the legal process for obtaining it is too long, complicated or unavailable. The network will allow them to connect with "Assistants" (people who are willing to help) and will make recommendations based on several criteria. The application will retain the usual features of a social network, like making friends, posting, making groups and messaging.
