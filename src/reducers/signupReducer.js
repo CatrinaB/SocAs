@@ -1,11 +1,13 @@
 import {
 	UPDATE_USERNAME,
 	UPDATE_PASSWORD,
-	UPDATE_CONFIRM_PASSWORD
+	UPDATE_CONFIRM_PASSWORD,
+	UPDATE_EMAIL
 } from '../actions/action-types'
 
 const initialState = {
 	newUsername: '',
+	email: '',
 	newPassword: '',
 	confirmPassword: ''
 }
@@ -28,6 +30,12 @@ export default function (state=initialState, action){
 			return{
 				...state,
 				confirmPassword: action.payload
+			}
+
+		case UPDATE_EMAIL:
+			return{
+				...state,
+				email: action.payload
 			}
 
 		default: {
