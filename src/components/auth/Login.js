@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
                                 <p className="h5 text-center mb-4">Login</p>
                                 <div className="mt-5 grey-text">
                                     <MDBInput containerClass="text-left"
-                                        label="Email"
+                                        label="Email"   
                                         icon="envelope"
                                         group
                                         type="email"
