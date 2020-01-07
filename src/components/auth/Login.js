@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
                     </button>
 
                     <p className="forgot-password text-right">
-                        Forgot <a href="#">password?</a>
+                        <a href="#">Forgot password?</a>
                     </p>
                 </form>
             </div>
