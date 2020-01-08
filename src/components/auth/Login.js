@@ -36,18 +36,18 @@ class LoginForm extends React.Component {
                             <form>
                                 <p className="h5 text-center mb-4">Login</p>
                                 <div className="mt-5 grey-text">
-                                    <MDBInput
-                                        label="Email"
-                                        // icon="envelope"
+                                    <MDBInput containerClass="text-left"
+                                        label="Email"   
+                                        icon="envelope"
                                         group
                                         type="email"
                                         validate
                                         error="wrong"
                                         success="right"
                                     />
-                                    <MDBInput
+                                    <MDBInput containerClass="text-left"
                                         label="Password"
-                                        // icon="lock"
+                                        icon="lock"
                                         group
                                         type="password"
                                         validate

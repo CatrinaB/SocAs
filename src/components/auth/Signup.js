@@ -63,9 +63,9 @@ class SignupForm extends React.Component {
                                         Sign up
                                     </p>
                                     <div className="mt-5 grey-text">
-                                        <MDBInput
+                                        <MDBInput containerClass="text-left"
                                             label="Name"
-                                            // icon="user"
+                                            icon="user"
                                             group
                                             type="text"
                                             validate
@@ -76,9 +76,9 @@ class SignupForm extends React.Component {
                                             onChange={this.onChange}
                                             value={this.props.user}
                                         />
-                                        <MDBInput
+                                        <MDBInput containerClass="text-left"
                                             label="Email"
-                                            // icon="envelope"
+                                            icon="envelope"
                                             group
                                             type="email"
                                             validate
@@ -89,9 +89,9 @@ class SignupForm extends React.Component {
                                             onChange={this.onChange}
                                             value={this.props.user}
                                         />
-                                        <MDBInput
+                                        <MDBInput containerClass="text-left"
                                             label="Password"
-                                            // icon="lock"
+                                            icon="lock"
                                             group
                                             type="password"
                                             validate
@@ -100,9 +100,9 @@ class SignupForm extends React.Component {
                                             onChange={this.onChange}
                                             value={this.props.password}
                                         />
-                                        <MDBInput
+                                        <MDBInput containerClass="text-left"
                                             label="Confirm password"
-                                            // icon="exclamation-triangle"
+                                            icon="exclamation-triangle"
                                             group
                                             type="password"
                                             validate
