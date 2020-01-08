@@ -1,15 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { 
-	updateEmail, 
-	updatePassword } from "../../actions/authActions";
-import { 
-	MDBContainer, 
-	MDBRow, 
-	MDBCol, 
-	MDBInput, 
-	MDBBtn 
-} from "mdbreact";
+import { updateEmail, updatePassword } from "../../actions/authActions";
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -31,13 +23,14 @@ class LoginForm extends React.Component {
         return (
             <div>
                 <MDBContainer>
-                    <MDBRow className="d-flex mt-3 justify-content-center">
+                    <MDBRow className="d-flex justify-content-center">
                         <MDBCol md="6">
                             <form>
-                                <p className="h5 text-center mb-4">Login</p>
+                                <p className="mt-3 h5 text-center">Login</p>
                                 <div className="mt-5 grey-text">
-                                    <MDBInput containerClass="text-left"
-                                        label="Email"   
+                                    <MDBInput
+                                        containerClass="text-left"
+                                        label="Email"
                                         icon="envelope"
                                         group
                                         type="email"
@@ -45,7 +38,8 @@ class LoginForm extends React.Component {
                                         error="wrong"
                                         success="right"
                                     />
-                                    <MDBInput containerClass="text-left"
+                                    <MDBInput
+                                        containerClass="text-left"
                                         label="Password"
                                         icon="lock"
                                         group
