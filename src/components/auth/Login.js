@@ -1,7 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateEmail, updatePassword } from "../../actions/authActions";
-import "../../styles/Login.css";
+import { 
+	updateEmail, 
+	updatePassword } from "../../actions/authActions";
+import { 
+	MDBContainer, 
+	MDBRow, 
+	MDBCol, 
+	MDBInput, 
+	MDBBtn 
+} from "mdbreact";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -22,39 +30,36 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Email address</label>
-                        <input
-                            type="email"
-                            className="form-control"
-                            placeholder="Enter email"
-                            name="email"
-                            onChange={this.onChange}
-                            value={this.props.user}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            placeholder="Enter password"
-                            name="password"
-                            onChange={this.onChange}
-                            value={this.props.password}
-                        />
-                    </div>
-
-                    <button type="submit" className="btn btn-primary btn-block">
-                        Login
-                    </button>
-
-                    <p className="forgot-password text-right">
-                        Forgot <a href="#">password?</a>
-                    </p>
-                </form>
+                <MDBContainer>
+                    <MDBRow className="d-flex mt-3 justify-content-center">
+                        <MDBCol md="6">
+                            <form>
+                                <p className="h5 text-center mb-4">Login</p>
+                                <div className="mt-5 grey-text">
+                                    <MDBInput
+                                        label="Email"
+                                        // icon="envelope"
+                                        group
+                                        type="email"
+                                        validate
+                                        error="wrong"
+                                        success="right"
+                                    />
+                                    <MDBInput
+                                        label="Password"
+                                        // icon="lock"
+                                        group
+                                        type="password"
+                                        validate
+                                    />
+                                </div>
+                                <div className="text-center">
+                                    <MDBBtn color="primary">Login</MDBBtn>
+                                </div>
+                            </form>
+                        </MDBCol>
+                    </MDBRow>
+                </MDBContainer>
             </div>
         );
     }
