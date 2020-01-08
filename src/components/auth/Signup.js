@@ -63,8 +63,21 @@ class SignupForm extends React.Component {
                                         Sign up
                                     </p>
                                     <div className="mt-5 grey-text">
-                                        <MDBInput containerClass="text-left"
-                                            label="Name"
+										<MDBInput containerClass="text-left"
+											label="First name" 
+											icon="user-circle"
+                                            group
+                                            type="text"
+                                            validate
+                                            error="wrong"
+                                            success="right"
+                                            placeholder=""
+                                            name="name"
+                                            onChange={this.onChange}
+                                            value={this.props.user}
+										/>
+										<MDBInput containerClass="text-left"
+                                            label="Last name"
                                             icon="user"
                                             group
                                             type="text"
