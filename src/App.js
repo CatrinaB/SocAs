@@ -10,6 +10,9 @@ import 'mdbreact/dist/css/mdb.css';
 import Login from "./components/auth/Login.js";
 import SignupForm from "./components/auth/Signup";
 import Dashboard from "./components/Dashboard";
+import BackgroundImagePage from "./components/Background";
+import AssistantForm from "./components/AssistantForm";
+import DisabilityForm from "./components/DisabilityForm";
 
 import "./App.css";
 
@@ -41,11 +44,18 @@ function App() {
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link
-                                                className="nav-link"
-                                                to={"/signup"}
-                                            >
+                                            <Link className="nav-link" to={"/signup"}>
                                                 Sign up
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to={"/assistantForm"}>
+                                                Assistant Form
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to={"/disabilityForm"}>
+                                                Disability Form
                                             </Link>
                                         </li>
                                     </ul>
@@ -64,6 +74,19 @@ function App() {
                                     <Route
                                         path="/dashboard"
                                         component={Dashboard}
+                                    />
+                                    <Route
+                                        path="/background"
+                                        component={BackgroundImagePage}
+                                    />
+                                    <Route
+                                        path="/assistantForm"
+                                        component={AssistantForm}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/disabilityForm"
+                                        component={DisabilityForm}
                                     />
                                 </Switch>
                             </div>
