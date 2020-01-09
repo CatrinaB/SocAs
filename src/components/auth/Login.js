@@ -11,6 +11,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 import store from "../../store";
 
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -75,19 +76,21 @@ class LoginForm extends React.Component {
                 console.log(err);
             });
     }
+  //h5 text-center mb-4
 
     render() {
         return (
             <div>
                 <MDBContainer>
-                    <MDBRow className="d-flex mt-3 justify-content-center">
+                    <MDBRow className="d-flex justify-content-center">
                         <MDBCol md="6">
                             <form onSubmit={this.onSubmit}>
-                                <p className="h5 text-center mb-4">Login</p>
+                                <p className="mt-3 h5 text-center">Login</p>
                                 <div className="mt-5 grey-text">
                                     <MDBInput
+                                        containerClass="text-left"
                                         label="Email"
-                                        // icon="envelope"
+                                        icon="envelope"
                                         group
                                         type="email"
                                         validate
@@ -97,8 +100,9 @@ class LoginForm extends React.Component {
                                         onChange={this.onChange}
                                     />
                                     <MDBInput
+                                        containerClass="text-left"
                                         label="Password"
-                                        // icon="lock"
+                                        icon="lock"
                                         group
                                         type="password"
                                         validate
