@@ -11,13 +11,14 @@ module.exports = buildSchema(`
     type Assistant {
         _id: ID!
         name: String
-        surname: String
         gender: String
         employmentStatus: String
-        age: Int
+        dob: String
         experience: Boolean
+        experienceTime: Int
+        experienceType: [String]
         allotedTime: Int
-        helpType: String
+        helpType: [String]
         reason: String
     }
 
@@ -63,10 +64,12 @@ module.exports = buildSchema(`
         _id: ID!
         gender: String
         employmentStatus: String
-        age: Int
+        dob: String
         experience: Boolean
+        experienceTime: Int
+        experienceType: [String]
         allotedTime: Int
-        helpType: String
+        helpType: [String]
         reason: String
     }
 

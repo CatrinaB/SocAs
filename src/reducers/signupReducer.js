@@ -6,7 +6,10 @@ import {
     UPDATE_TOKEN_EXP,
     UPDATE_TOKEN,
     UPDATE_USERID,
-    UPDATE_NAME
+    UPDATE_NAME,
+    UPDATE_GENDER,
+    UPDATE_DOB,
+    UPDATE_EXPERIENCE
 } from "../actions/action-types";
 
 const initialState = {
@@ -17,7 +20,10 @@ const initialState = {
     token: null,
     tokenExpiration: null,
     userId: null,
-    name: ""
+    name: "",
+    gender: "",
+    dob: "",
+    hasExperience: ""
 };
 
 export default function(state = initialState, action) {
@@ -71,6 +77,27 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 name: action.payload
+            };
+        }
+
+        case UPDATE_GENDER: {
+            return {
+                ...state,
+                gender: action.payload
+            };
+        }
+
+        case UPDATE_DOB: {
+            return {
+                ...state,
+                dob: action.payload
+            };
+        }
+
+        case UPDATE_EXPERIENCE: {
+            return {
+                ...state,
+                hasExperience: action.payload
             };
         }
 

@@ -6,9 +6,11 @@ module.exports = {
 			const assistant = new Assistant({
 				_id: args.newAssistantInput._id,
 				name: args.newAssistantInput.name,
-				surname: args.newAssistantInput.surname,
-				age: args.newAssistantInput.age,
+				// surname: args.newAssistantInput.surname,
+				dob: args.newAssistantInput.dob,
 				experience: args.newAssistantInput.experience,
+				experienceTime: args.newAssistantInput.experienceTime,
+				experienceType: args.newAssistantInput.experienceType,
 				allotedTime: args.newAssistantInput.allotedTime
 			});
 
@@ -32,8 +34,10 @@ module.exports = {
 
 			const updatedAssistant = new Assistant({
 				...assistant,
-				age: args.existingAssistantInput.age,
-				experience: args.existingAssistantInput.experience,
+				dob: args.existingAssistantInput.dob,
+				experience: args.newAssistantInput.experience,
+				experienceTime: args.existingAssistantInput.experienceTime,
+				experienceType: args.newAssistantInput.experienceType,
 				allotedTime: args.existingAssistantInput.allotedTime
 			});
 

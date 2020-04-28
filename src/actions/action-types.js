@@ -6,3 +6,6 @@ export const UPDATE_TOKEN = "UPDATE_TOKEN";
 export const UPDATE_USERID = "UPDATE_USERID";
 export const UPDATE_TOKEN_EXP = "UPDATE_TOKEN_EXP";
 export const UPDATE_NAME = "UPDATE_NAME";
+export const UPDATE_GENDER = "UPDATE_GENDER";
+export const UPDATE_DOB = "UPDATE_DOB";
+export const UPDATE_EXPERIENCE = "UPDATE_EXPERIENCE";

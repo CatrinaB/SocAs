@@ -4,18 +4,26 @@ const Schema = mongoose.Schema;
 const assistantSchema = new Schema({
 	name: {
 		type: String,
-		required: false
+		required: true
 	},
-	surname: {
+	// surname: {
+	// 	type: String,
+	// 	required: false
+	// },
+	dob: {
 		type: String,
 		required: false
 	},
-	age: {
+	experience: {
+		type: Boolean,
+		required: false
+	},
+	experienceTime: {
 		type: Number,
 		required: false
 	},
-	experience: {
-		type: Number,
+	experienceType: {
+		type: Array,
 		required: false
 	},
 	allotedTime: {

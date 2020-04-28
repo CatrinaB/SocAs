@@ -11,7 +11,6 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 import store from "../../store";
 
-
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -62,6 +61,9 @@ class LoginForm extends React.Component {
             })
             .then(resData => {
                 console.log(resData);
+                // if (resData.errors[0].message) {
+                //     alert(resData.errors[0].message);
+                // }
                 if (resData.data.login.token) {
                     this.setState({
                         flag: resData.data.login
@@ -73,10 +75,10 @@ class LoginForm extends React.Component {
                 }
             })
             .catch(err => {
-                console.log(err);
+                alert(err);
             });
     }
-  //h5 text-center mb-4
+    //h5 text-center mb-4
 
     render() {
         return (

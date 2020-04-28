@@ -6,7 +6,10 @@ import {
     UPDATE_TOKEN,
     UPDATE_TOKEN_EXP,
     UPDATE_USERID,
-    UPDATE_NAME
+    UPDATE_NAME,
+    UPDATE_GENDER,
+    UPDATE_DOB,
+    UPDATE_EXPERIENCE
 } from "./action-types";
 import store from "../store";
 
@@ -62,6 +65,27 @@ export function updateUserId(params) {
 export function updateName(params) {
     return store.dispatch({
         type: UPDATE_NAME,
+        payload: params
+    });
+}
+
+export function updateGender(params) {
+    return store.dispatch({
+        type: UPDATE_GENDER,
+        payload: params
+    });
+}
+
+export function updateDOB(params) {
+    return store.dispatch({
+        type: UPDATE_DOB,
+        payload: params
+    });
+}
+
+export function updateExperience(params) {
+    return store.dispatch({
+        type: UPDATE_EXPERIENCE,
         payload: params
     });
 }
