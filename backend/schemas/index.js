@@ -1,5 +1,10 @@
 const { buildSchema } = require("graphql");
 
+// const graphql = require('graphql');
+//
+// const { GraphQLObjectType } = graphql;
+
+// Todo: separate the schema into subcomponents
 module.exports = buildSchema(`
     type User {
         _id: ID!
@@ -110,3 +115,10 @@ module.exports = buildSchema(`
         mutation: RootMutation
     }
 `);
+
+// const RootQuery = new GraphQLObjectType({
+// 	name: 'RootQueryType',
+// 	fields: {
+//
+// 	}
+// });
