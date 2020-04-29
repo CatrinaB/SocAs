@@ -7,6 +7,10 @@ const graphqlSchema = require("./schemas/index");
 const graphqlResolver = require("./resolvers/index");
 //const isAuth = require("./middleware/is-auth");
 
+const logger = require('./utils/logger');
+
+logger.info('Initializing SocialNetwork server');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -46,3 +50,5 @@ mongoose
 	.catch(err => {
 		console.log(err);
 	});
+
+logger.info('Server started');
