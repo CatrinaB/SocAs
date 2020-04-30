@@ -10,7 +10,10 @@ const TOKEN_EXPIRATION_STRING = "1h";
 const TOKEN_EXPIRATION = 1;
 
 const USER_ALREADY_EXISTS_ERROR = "User already exists";
+const USER_NOT_EXISTS_ERROR = "User does not exists";
+const WRONG_PASSWORD_ERROR = "Wrong password";
 const SERVICE_UNAVAILABLE_CREATE_USER = "Service unavailable: unable to create new user"
+const SERVICE_UNAVAILABLE_LOGIN_USER = "Service unavailable: unable to login user"
 
 
 module.exports = {
@@ -60,16 +63,24 @@ module.exports = {
 	},
 	login: async ({ email, password }) => {
 		logger.debug(`Attempt of login for user with email ${email}`);
-		const loginUser = await User.findOne({ email: email });
+
+		let loginUser;
+		try {
+			loginUser = await User.findOne({ email: email });
+		} catch (err) {
+			logger.error(`Error occurred while searching for user: ${err}`);
+			throw new Error(SERVICE_UNAVAILABLE_LOGIN_USER);
+		}
+
 		if (!loginUser) {
 			logger.debug(`User with email ${email} not found`);
-			throw new Error("User does not exist!");
+			throw new Error(USER_NOT_EXISTS_ERROR);
 		}
 
 		const isEqual = await bcrypt.compare(password, loginUser.password);
 		if (!isEqual) {
 			logger.debug(`Wrong password for user with email ${email}`);
-			throw new Error("Wrong password!");
+			throw new Error(WRONG_PASSWORD_ERROR);
 		}
 
 		logger.debug(`User with email ${email} provided correct password`);
