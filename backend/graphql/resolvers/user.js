@@ -1,7 +1,7 @@
-const User = require("../models/userModel");
+const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const logger = require("../utils/logger");
+const logger = require("../../utils/logger");
 
 // Todo: Check if it is the right approach
 const BCRYPT_SALT = 12;
@@ -14,7 +14,6 @@ const USER_NOT_EXISTS_ERROR = "User does not exists";
 const WRONG_PASSWORD_ERROR = "Wrong password";
 const SERVICE_UNAVAILABLE_CREATE_USER = "Service unavailable: unable to create new user";
 const SERVICE_UNAVAILABLE_LOGIN_USER = "Service unavailable: unable to login user";
-
 
 module.exports = {
 	createUser: async args => {

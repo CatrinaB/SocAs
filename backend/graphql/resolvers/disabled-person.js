@@ -1,6 +1,6 @@
-const DisabledPerson = require("../models/disabledPersonModel");
+const DisabledPerson = require("../../models/disabled-person");
 
-const logger = require("../utils/logger");
+const logger = require("../../utils/logger");
 
 const PERSON_NOT_EXISTS = "Person does not exist";
 const SERVICE_UNAVAILABLE_CREATE_PERSON = "Service unavailable: unable to create new person";

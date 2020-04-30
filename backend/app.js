@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 const graphqlHttp = require("express-graphql");
 const mongoose = require("mongoose");
 
-const graphqlSchema = require("./schemas/index");
-const graphqlResolver = require("./resolvers/index");
+const graphqlSchema = require("./graphql/schemas/index");
+const graphqlResolver = require("./graphql/resolvers/index");
 const logger = require('./utils/logger');
 
 const PORT_NUMBER = 8000;

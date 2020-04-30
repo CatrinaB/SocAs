@@ -45,7 +45,11 @@ function NavbarAuth() {
                                 Account
                             </Link>
                         </li>
-
+                        <li className="nav-item">
+                            <Link className="nav-link" to={"/account"}>
+                                Logout
+                            </Link>
+                        </li>
                         {/* <li className="nav-item">
                                             <Link
                                                 className="nav-link"

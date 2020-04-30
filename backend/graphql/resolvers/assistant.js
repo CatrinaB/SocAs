@@ -1,10 +1,9 @@
-const Assistant = require("../models/assistantModel");
+const Assistant = require("../../models/assistant");
 
-const logger = require("../utils/logger");
+const logger = require("../../utils/logger");
 
 const SERVICE_UNAVAILABLE_CREATE_ASSISTANT = "Service unavailable: unable to create new assistant";
 const SERVICE_UNAVAILABLE_UPDATE_ASSISTANT = "Service unavailable: unable to update assistant";
-
 
 module.exports = {
 	createAssistant: async args => {
