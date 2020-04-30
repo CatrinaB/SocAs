@@ -3,6 +3,8 @@
 		"MONGO_USER": "Catrina",
 		"MONGO_PASSWORD": "miWN3jrlAKdieesw",
 		"MONGO_DB": "social_network_disabilities",
-		"TOKEN_SECRET_KEY": "some_super_69_secret_key"
+		"TOKEN_SECRET_KEY": "some_super_69_secret_key",
+		"SERVER_PORT": 8000,
+		"GRAPHQL_ROOT_PATH": "/graphql"
 	}
 }

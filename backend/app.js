@@ -8,8 +8,6 @@ const graphqlResolver = require("./graphql/resolvers/index");
 const logger = require('./utils/logger');
 const { isAuthMiddleware, corsMiddleware } = require('./middleware');
 
-const PORT_NUMBER = 8000;
-
 logger.info('Initializing SocialNetwork server');
 
 const app = express();
@@ -17,11 +15,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(isAuthMiddleware);
 app.use(corsMiddleware);
-
-// This middleware passes the request to graphQL because express does not know
-// how to handle graphQL on its own.
 app.use(
-	"/graphql",
+	process.env.GRAPHQL_ROOT_PATH,
 	graphqlHttp({
 		schema: graphqlSchema,
 		rootValue: graphqlResolver,
@@ -35,8 +30,8 @@ mongoose
 	)
 	.then(() => {
 		logger.info('Connected to database')
-		app.listen(PORT_NUMBER, () => {
-			logger.info(`Server now listening to port ${PORT_NUMBER}`);
+		app.listen(process.env.SERVER_PORT, () => {
+			logger.info(`Server now listening to port ${process.env.SERVER_PORT}`);
 		});
 	})
 	.catch(err => {
