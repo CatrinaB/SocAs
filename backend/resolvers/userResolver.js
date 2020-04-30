@@ -9,6 +9,10 @@ const SECRET_KEY = "tokenkey";
 const TOKEN_EXPIRATION_STRING = "1h";
 const TOKEN_EXPIRATION = 1;
 
+const USER_ALREADY_EXISTS_ERROR = "User already exists";
+const SERVICE_UNAVAILABLE_CREATE_USER = "Service unavailable: unable to create new user"
+
+
 module.exports = {
 	createUser: async args => {
 		const email = args.userInput.email;
@@ -16,11 +20,19 @@ module.exports = {
 		const userType = args.userInput.userType;
 		logger.debug(`Attempt of creating user (${userType}) with email ${email}`);
 
-		const user = await User.findOne({ email: email });
+		let user;
+		try {
+			user = await User.findOne({ email: email });
+		} catch (err) {
+			logger.error(`Error occurred while searching for user: ${err}`);
+			throw Error(SERVICE_UNAVAILABLE_CREATE_USER);
+		}
+
 		if (user) {
 			logger.debug(`User with email ${email} already exists`)
-			throw new Error("User already exists!");
+			throw new Error(USER_ALREADY_EXISTS_ERROR);
 		}
+
 		const hashedPassword = await bcrypt.hash(
 			password,
 			BCRYPT_SALT
@@ -31,7 +43,14 @@ module.exports = {
 			password: hashedPassword,
 			userType: userType
 		});
-		const result = await newUser.save();
+
+		let result;
+		try {
+			result = await newUser.save();
+		} catch (err) {
+			logger.debug(`Error occurred while saving new user: ${err}`)
+			throw new Error(SERVICE_UNAVAILABLE_CREATE_USER);
+		}
 
 		logger.debug(`User save result: ${JSON.stringify(result, null, 2)}`);
 
