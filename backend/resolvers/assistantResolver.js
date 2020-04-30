@@ -2,8 +2,8 @@ const Assistant = require("../models/assistantModel");
 
 const logger = require("../utils/logger");
 
-const SERVICE_UNAVAILABLE_CREATE_ASSISTANT = "Service unavailable: unable to create new assistant"
-const SERVICE_UNAVAILABLE_UPDATE_ASSISTANT = "Service unavailable: unable to update assistant"
+const SERVICE_UNAVAILABLE_CREATE_ASSISTANT = "Service unavailable: unable to create new assistant";
+const SERVICE_UNAVAILABLE_UPDATE_ASSISTANT = "Service unavailable: unable to update assistant";
 
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
 		logger.debug(`Attempt of creating assistant: ${JSON.stringify(args.newAssistantInput, null, 2)}`);
 
 		const assistant = new Assistant({
-			// _id: args.newAssistantInput._id,
+			_id: args.newAssistantInput._id,
 			name: args.newAssistantInput.name,
 			// surname: args.newAssistantInput.surname,
 			dob: args.newAssistantInput.dob,
@@ -70,7 +70,7 @@ module.exports = {
 			throw new Error(SERVICE_UNAVAILABLE_UPDATE_ASSISTANT);
 		}
 
-		logger.info('Assistant updated successfully');
+		logger.debug('Assistant updated successfully');
 
 		return {
 			...result._doc

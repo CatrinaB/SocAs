@@ -12,8 +12,8 @@ const TOKEN_EXPIRATION = 1;
 const USER_ALREADY_EXISTS_ERROR = "User already exists";
 const USER_NOT_EXISTS_ERROR = "User does not exists";
 const WRONG_PASSWORD_ERROR = "Wrong password";
-const SERVICE_UNAVAILABLE_CREATE_USER = "Service unavailable: unable to create new user"
-const SERVICE_UNAVAILABLE_LOGIN_USER = "Service unavailable: unable to login user"
+const SERVICE_UNAVAILABLE_CREATE_USER = "Service unavailable: unable to create new user";
+const SERVICE_UNAVAILABLE_LOGIN_USER = "Service unavailable: unable to login user";
 
 
 module.exports = {
