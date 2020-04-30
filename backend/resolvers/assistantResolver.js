@@ -3,6 +3,7 @@ const Assistant = require("../models/assistantModel");
 const logger = require("../utils/logger");
 
 const SERVICE_UNAVAILABLE_CREATE_ASSISTANT = "Service unavailable: unable to create new assistant"
+const SERVICE_UNAVAILABLE_UPDATE_ASSISTANT = "Service unavailable: unable to update assistant"
 
 
 module.exports = {
@@ -36,30 +37,43 @@ module.exports = {
 		};
 	},
 	updateAssistant: async args => {
+		logger.debug(`Attempt of updating assistant: ${JSON.stringify(args.existingAssistantInput, null, 2)}`);
+
+		let assistant;
+
 		try {
-			const assistant = Assistant.findOne({
-				_id: args.existingAssistantInput._id
-			});
-			if (!assistant) {
-				throw new Error("Assistant does not exist");
-			}
-
-			const updatedAssistant = new Assistant({
-				...assistant,
-				dob: args.existingAssistantInput.dob,
-				experience: args.newAssistantInput.experience,
-				experienceTime: args.existingAssistantInput.experienceTime,
-				experienceType: args.newAssistantInput.experienceType,
-				allottedTime: args.existingAssistantInput.allottedTime
-			});
-
-			const result = await updatedAssistant.save();
-
-			return {
-				...result._doc
-			};
-		} catch (error) {
-			throw error;
+			assistant = await Assistant.findOne({ _id: args.existingAssistantInput._id });
+		} catch (err) {
+			logger.error(`Error occurred while searching for assistant: ${err}`);
+			throw new Error(SERVICE_UNAVAILABLE_UPDATE_ASSISTANT);
 		}
+
+		if (!assistant) {
+			logger.debug(`Assistant with id ${args.existingAssistantInput._id} does not exist`);
+			throw new Error("Assistant does not exist");
+		}
+
+		const updatedAssistant = new Assistant({
+			...assistant,
+			dob: args.existingAssistantInput.dob,
+			experience: args.newAssistantInput.experience,
+			experienceTime: args.existingAssistantInput.experienceTime,
+			experienceType: args.newAssistantInput.experienceType,
+			allottedTime: args.existingAssistantInput.allottedTime
+		});
+
+		let result;
+		try {
+			result = await updatedAssistant.save();
+		} catch (err) {
+			logger.error(`Error occurred while updating assistant: ${err}`);
+			throw new Error(SERVICE_UNAVAILABLE_UPDATE_ASSISTANT);
+		}
+
+		logger.info('Assistant updated successfully');
+
+		return {
+			...result._doc
+		};
 	}
 };
