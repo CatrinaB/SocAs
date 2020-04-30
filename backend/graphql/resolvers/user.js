@@ -5,7 +5,7 @@ const logger = require("../../utils/logger");
 
 // Todo: Check if it is the right approach
 const BCRYPT_SALT = 12;
-const SECRET_KEY = "tokenkey";
+const SECRET_KEY = process.env.TOKEN_SECRET_KEY;
 const TOKEN_EXPIRATION_STRING = "1h";
 const TOKEN_EXPIRATION = 1;
 

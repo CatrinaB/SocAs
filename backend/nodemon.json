@@ -2,6 +2,7 @@
 	"env": {
 		"MONGO_USER": "Catrina",
 		"MONGO_PASSWORD": "miWN3jrlAKdieesw",
-		"MONGO_DB": "social_network_disabilities"
+		"MONGO_DB": "social_network_disabilities",
+		"TOKEN_SECRET_KEY": "some_super_69_secret_key"
 	}
 }
