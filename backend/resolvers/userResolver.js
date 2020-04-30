@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const logger = require("../utils/logger")
+const logger = require("../utils/logger");
 
 // Todo: Check if it is the right approach
 const BCRYPT_SALT = 12;

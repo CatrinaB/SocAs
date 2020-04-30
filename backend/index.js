@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 // Application-level middleware
 app.use((req, res, next) => {
-	logger.silly('Application-level middleware request');
+	logger.silly(`Application-level middleware request: ${JSON.stringify(req.body, null, 2).replace(/ /g, '')}`);
 
 	// Access-Control-Allow-Origin header indicates whether the response can be
 	// shared with requesting code from the given origin.
