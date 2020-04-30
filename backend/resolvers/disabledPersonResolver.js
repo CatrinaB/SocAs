@@ -9,7 +9,7 @@ module.exports = {
 				surname: args.newDisabledPersonInput.surname,
 				age: args.newDisabledPersonInput.age,
 				experience: args.newDisabledPersonInput.experience,
-				allotedTime: args.newDisabledPersonInput.allotedTime
+				allottedTime: args.newDisabledPersonInput.allottedTime
 			});
 
 			const result = await person.save();
@@ -34,7 +34,7 @@ module.exports = {
 				...person,
 				age: args.existingDisabledPersonInput.age,
 				experience: args.existingDisabledPersonInput.experience,
-				allotedTime: args.existingDisabledPersonInput.allotedTime
+				allottedTime: args.existingDisabledPersonInput.allottedTime
 			});
 
 			const result = await updatedPerson.save();

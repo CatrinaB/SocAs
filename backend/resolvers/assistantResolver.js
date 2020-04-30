@@ -17,7 +17,7 @@ module.exports = {
 			experience: args.newAssistantInput.experience,
 			experienceTime: args.newAssistantInput.experienceTime,
 			experienceType: args.newAssistantInput.experienceType,
-			allotedTime: args.newAssistantInput.allotedTime
+			allottedTime: args.newAssistantInput.allottedTime
 		});
 
 		let result;
@@ -50,7 +50,7 @@ module.exports = {
 				experience: args.newAssistantInput.experience,
 				experienceTime: args.existingAssistantInput.experienceTime,
 				experienceType: args.newAssistantInput.experienceType,
-				allotedTime: args.existingAssistantInput.allotedTime
+				allottedTime: args.existingAssistantInput.allottedTime
 			});
 
 			const result = await updatedAssistant.save();

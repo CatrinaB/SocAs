@@ -26,7 +26,7 @@ const assistantSchema = new Schema({
 		type: Array,
 		required: false
 	},
-	allotedTime: {
+	allottedTime: {
 		type: Number,
 		required: false
 	}

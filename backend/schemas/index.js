@@ -18,7 +18,7 @@ module.exports = buildSchema(`
         experience: Boolean
         experienceTime: Int
         experienceType: [String]
-        allotedTime: Int
+        allottedTime: Int
         helpType: [String]
         reason: String
     }
@@ -58,7 +58,7 @@ module.exports = buildSchema(`
         surname: String
         age: Int
         experience: Int
-        allotedTime: Int
+        allottedTime: Int
     }
 
     input ExistingAssistantInput {
@@ -69,7 +69,7 @@ module.exports = buildSchema(`
         experience: Boolean
         experienceTime: Int
         experienceType: [String]
-        allotedTime: Int
+        allottedTime: Int
         helpType: [String]
         reason: String
     }
