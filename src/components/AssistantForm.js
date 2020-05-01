@@ -26,7 +26,7 @@ import {
     updateGender,
     updateExperience,
     updateDOB
-} from "../actions/authActions";
+} from "../actions/auth-actions";
 
 class AssistantForm extends React.Component {
     state = {
@@ -239,7 +239,7 @@ class AssistantForm extends React.Component {
                         style={{ width: "400px" }}
                     >
                         {/* <FormLabel component="label" required>Gender</FormLabel>
-                    <RadioGroup row 
+                    <RadioGroup row
                     <FormControlLabel value="female" control={<Radio color="primary" />} label="female" labelPlacement="end" /> */}
                         <InputLabel id="gender" required>
                             Gender

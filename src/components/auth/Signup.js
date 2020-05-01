@@ -6,7 +6,7 @@ import {
 	updateEmail,
 	updateName,
 	updateUserId
-} from "../../actions/authActions";
+} from "../../actions/auth-actions";
 import store from "../../store";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";

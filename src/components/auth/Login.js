@@ -6,7 +6,7 @@ import {
 	updateToken,
 	updateTokenExpiration,
 	updateUserId
-} from "../../actions/authActions";
+} from "../../actions/auth-actions";
 import { Button } from "@material-ui/core";
 import store from "../../store";
 import TextField from "@material-ui/core/TextField";
