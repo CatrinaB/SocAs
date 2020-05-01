@@ -152,10 +152,10 @@ class AssistantForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         console.log(this);
-        const gender = store.getState().signup.gender;
-        const date = store.getState().signup.dob;
-        const exp = store.getState().signup.hasExperience === "true";
-        const userId = store.getState().signup.userId;
+        const gender = store.getState().auth.gender;
+        const date = store.getState().auth.dob;
+        const exp = store.getState().auth.hasExperience === "true";
+        const userId = store.getState().auth.userId;
         // const date = this.state.date.toISOString
 
         const assistantRequest = {
@@ -683,9 +683,9 @@ class AssistantForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        gender: state.signup.gender,
-        dob: new Date(state.signup.dob),
-        hasExperience: state.signup.hasExperience
+        gender: state.auth.gender,
+        dob: new Date(state.auth.dob),
+        hasExperience: state.auth.hasExperience
     };
 };
 

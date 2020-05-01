@@ -15,7 +15,7 @@ class Navbar extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		token: state.signup.token
+		token: state.auth.token
 	};
 };
 

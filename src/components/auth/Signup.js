@@ -116,13 +116,13 @@ class SignupForm extends React.Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		const email = store.getState().signup.email;
-		const password = store.getState().signup.newPassword;
+		const email = store.getState().auth.email;
+		const password = store.getState().auth.newPassword;
 		console.log(email, "  ", password);
 		if (this.state.radio) {
 			const userType =
 				this.state.radio === "Assistant" ? "assistant" : "person";
-			const name = store.getState().signup.name;
+			const name = store.getState().auth.name;
 
 			const request = {
 				query: `
@@ -414,9 +414,9 @@ class SignupForm extends React.Component {
 const mapStateToProps = state => {
 	console.log("xxx", state);
 	return {
-		user: state.signup.name,
-		password: state.signup.newPassword,
-		confirmPassword: state.signup.confirmPassword
+		user: state.auth.name,
+		password: state.auth.newPassword,
+		confirmPassword: state.auth.confirmPassword
 	};
 };
 

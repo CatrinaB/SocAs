@@ -42,8 +42,8 @@ class LoginForm extends React.Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		const email = store.getState().signup.email;
-		const password = store.getState().signup.newPassword;
+		const email = store.getState().auth.email;
+		const password = store.getState().auth.newPassword;
 		const request = {
 			query: `
                 query {
