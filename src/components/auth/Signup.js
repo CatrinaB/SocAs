@@ -24,6 +24,7 @@ import {
 	FormLabel,
 	FormControl
 } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
 
 class SignupForm extends React.Component {
 	constructor(props) {
@@ -249,6 +250,10 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
+		if (store.getState().auth.token) {
+			return (<Redirect to="/dashboard"/>);
+		}
+
 		return (
 			<div style={{ marginTop: "140px" }}>
 				<form autoComplete="off" onSubmit={this.onSubmit}>

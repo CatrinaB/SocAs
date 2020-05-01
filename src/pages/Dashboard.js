@@ -1,8 +1,14 @@
 import React from "react";
 import { TextField, Avatar } from "@material-ui/core";
+import store from "../redux/store";
+import { Redirect } from "react-router-dom";
 
 class Dashboard extends React.Component {
     render() {
+        if (!store.getState().auth.token) {
+            return (<Redirect to="/login"/>);
+        }
+
         return (
             <div
                 style={{

@@ -16,6 +16,7 @@ import Lock from "@material-ui/icons/Lock";
 import IconButton from "@material-ui/core/IconButton";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Visibility from "@material-ui/icons/Visibility";
+import { Redirect } from "react-router-dom";
 
 class LoginForm extends React.Component {
 	constructor(props) {
@@ -95,6 +96,10 @@ class LoginForm extends React.Component {
 	}
 
 	render() {
+		if (store.getState().auth.token) {
+			return (<Redirect to="/dashboard"/>);
+		}
+
 		return (
 			<div style={{ marginTop: "140px" }}>
 				<form autoComplete="off" onSubmit={this.onSubmit}>
