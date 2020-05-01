@@ -6,9 +6,9 @@ import {
 	updateToken,
 	updateTokenExpiration,
 	updateUserId
-} from "../../actions/auth-actions";
+} from "../../redux/actions/auth-actions";
 import { Button } from "@material-ui/core";
-import store from "../../store";
+import store from "../../redux/store";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailRounded from "@material-ui/icons/EmailRounded";

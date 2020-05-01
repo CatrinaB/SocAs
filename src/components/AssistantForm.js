@@ -21,12 +21,12 @@ import {
     MuiPickersUtilsProvider
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import store from "../store";
+import store from "../redux/store";
 import {
     updateGender,
     updateExperience,
     updateDOB
-} from "../actions/auth-actions";
+} from "../redux/actions/auth-actions";
 
 class AssistantForm extends React.Component {
     state = {
