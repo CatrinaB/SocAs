@@ -412,7 +412,6 @@ class SignupForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-	console.log("xxx", state);
 	return {
 		user: state.auth.name,
 		password: state.auth.newPassword,

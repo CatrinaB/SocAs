@@ -8,12 +8,13 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 
 import Login from "./components/auth/Login.js";
+import Logout from "./components/auth/Logout";
 import SignupForm from "./components/auth/Signup";
 import Dashboard from "./components/Dashboard";
 import BackgroundImagePage from "./components/Background";
 import AssistantForm from "./components/AssistantForm";
 import DisabilityForm from "./components/DisabilityForm";
-import Account from "./components/Account";
+import Account from "./pages/Account";
 
 import "./App.css";
 import Navbar from "./components/navigation/Navbar";
@@ -33,6 +34,7 @@ function App() {
 							<Route path="/assistantForm" component={AssistantForm}/>
 							<Route path="/disabilityForm" component={DisabilityForm}/>
 							<Route path="/account" component={Account}/>
+							<Route path="/logout" component={Logout}/>
 							<Redirect to="/login"/>
 						</Switch>
 					</main>

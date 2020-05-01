@@ -29,11 +29,11 @@ class LoginForm extends React.Component {
 
 	onChange(e) {
 		if (e.target.name === "email") {
-			if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(e.target.value)) {
-				this.setState({ ...this.state, errorEmail: true });
+			if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(e.target.value)) {
+				this.setState({ ...this.state, errorEmail: false });
 				updateEmail(e.target.value);
 			} else {
-				this.setState({ ...this.state, errorEmail: false });
+				this.setState({ ...this.state, errorEmail: true });
 			}
 		} else {
 			updatePassword(e.target.value);
