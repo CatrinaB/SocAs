@@ -15,6 +15,7 @@ import BackgroundImagePage from "./components/Background";
 import AssistantForm from "./components/AssistantForm";
 import DisabilityForm from "./components/DisabilityForm";
 import Account from "./pages/Account";
+import PrivateRoute from "./components/auth/PrivateRoute"
 
 import "./App.css";
 import Navbar from "./components/navigation/Navbar";
@@ -31,11 +32,11 @@ function App() {
 						<Switch>
 							<Route path="/login" component={Login}/>
 							<Route path="/signup" component={SignupForm}/>
-							<Route path="/dashboard" component={Dashboard}/>
 							<Route path="/background" component={BackgroundImagePage}/>
 							<Route path="/assistantForm" component={AssistantForm}/>
 							<Route path="/disabilityForm" component={DisabilityForm}/>
-							<Route path="/account" component={Account}/>
+							<PrivateRoute path="/dashboard" component={Dashboard}/>
+							<PrivateRoute path="/account" component={Account}/>
 							<Route path="/logout" component={Logout}/>
 							<Redirect to="/login"/>
 						</Switch>

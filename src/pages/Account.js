@@ -1,6 +1,4 @@
 import React from "react";
-import store from "../redux/store";
-import { Redirect } from "react-router-dom";
 
 
 class Account extends React.Component {
@@ -12,10 +10,6 @@ class Account extends React.Component {
 	}
 
 	render() {
-		if (!store.getState().auth.token) {
-			return (<Redirect to="/login"/>);
-		}
-
 		return (<div>Account page</div>);
 	}
 }

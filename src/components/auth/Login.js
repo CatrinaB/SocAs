@@ -147,19 +147,6 @@ class LoginForm extends React.Component {
 									<Lock/>
 								</InputAdornment>
 							),
-							endAdornment: (
-								<IconButton
-									aria-label="toggle password visibility"
-									onClick={this.handlePasswordClick}
-									onMouseDown={this.handleMouseDownPassword}
-								>
-									{this.state.showPassword ? (
-										<VisibilityOff/>
-									) : (
-										<Visibility/>
-									)}
-								</IconButton>
-							)
 						}}
 						style={{ width: "400px" }}
 					/>
