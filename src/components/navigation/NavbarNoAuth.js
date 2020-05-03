@@ -16,7 +16,7 @@ function NavbarNoAuth() {
 	const styles = navStyles();
 
 	return (
-		<AppBar>
+		<AppBar position="static">
 			<Toolbar>
     			<Typography variant="h6" className={styles.title}>
       				The Social Network

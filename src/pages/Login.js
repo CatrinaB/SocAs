@@ -97,7 +97,7 @@ class LoginForm extends React.Component {
 		}
 
 		return (
-			<div style={{ marginTop: "140px" }}>
+			<div>
 				{this.state.loginError &&
 					(<h3>{this.state.loginErrorMessage}</h3>)
 				}

@@ -11,7 +11,6 @@ import Login from "./pages/Login.js";
 import Logout from "./components/auth/Logout";
 import SignupForm from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import BackgroundImagePage from "./components/Background";
 import AssistantForm from "./components/AssistantForm";
 import DisabilityForm from "./components/DisabilityForm";
 import Account from "./pages/Account";
@@ -32,7 +31,6 @@ function App() {
 						<Switch>
 							<Route path="/login" component={Login}/>
 							<Route path="/signup" component={SignupForm}/>
-							<Route path="/background" component={BackgroundImagePage}/>
 							<Route path="/assistantForm" component={AssistantForm}/>
 							<Route path="/disabilityForm" component={DisabilityForm}/>
 							<PrivateRoute path="/dashboard" component={Dashboard}/>

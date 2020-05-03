@@ -15,7 +15,7 @@ function NavbarAuth() {
 	const styles = navStyles();
 
 	return (
-		<AppBar>
+		<AppBar position="static">
 			<Toolbar>
 				<Button component={Link} to="/dashboard">
 					Dashboard
