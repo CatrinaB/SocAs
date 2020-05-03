@@ -5,8 +5,8 @@ export const navStyles = makeStyles((theme) => ({
 	root: {
 	  	flexGrow: 1,
 	},
-	menuButton: {
-	  	marginRight: theme.spacing(2),
+	button: {
+	  	color: 'primary'
 	},
 	title: {
 	  	flexGrow: 1,

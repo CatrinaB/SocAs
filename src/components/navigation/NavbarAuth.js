@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 
 function NavbarAuth() {
-	const classes = navStyles();
+	const styles = navStyles();
 
 	return (
 		<AppBar>
@@ -20,7 +20,7 @@ function NavbarAuth() {
 				<Button component={Link} to="/dashboard">
 					Dashboard
 				</Button>
-    			<Typography variant="h6" className={classes.title}>
+    			<Typography variant="h6" className={styles.title}>
       				The Social Network
     			</Typography>
 				<Button component={Link} to="/account">

@@ -13,18 +13,18 @@ import "../../App.css";
 
 
 function NavbarNoAuth() {
-	const classes = navStyles();
+	const styles = navStyles();
 
 	return (
 		<AppBar>
 			<Toolbar>
-    			<Typography variant="h6" className={classes.title}>
+    			<Typography variant="h6" className={styles.title}>
       				The Social Network
     			</Typography>
-    			<Button component={Link}to="/login">
+    			<Button component={Link} to="/login" className={styles.button}>
 					Login
 				</Button>
-				<Button component={Link}to="/signup">
+				<Button component={Link} to="/signup">
 					Signup
 				</Button>
   			</Toolbar>
