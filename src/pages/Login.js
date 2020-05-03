@@ -3,15 +3,12 @@ import { connect } from "react-redux";
 import {
 	updateToken,
 	updateTokenExpiration,
-} from "../../redux/actions/auth-actions";
+} from "../redux/actions/auth-actions";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailRounded from "@material-ui/icons/EmailRounded";
 import Lock from "@material-ui/icons/Lock";
-import IconButton from "@material-ui/core/IconButton";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Visibility from "@material-ui/icons/Visibility";
 import { Redirect } from "react-router-dom";
 
 class LoginForm extends React.Component {

@@ -6,8 +6,8 @@ import {
 	updateEmail,
 	updateName,
 	updateUserId
-} from "../../redux/actions/auth-actions";
-import store from "../../redux/store";
+} from "../redux/actions/auth-actions";
+import store from "../redux/store";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AccountCircle from "@material-ui/icons/AccountCircle";

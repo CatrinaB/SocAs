@@ -10,7 +10,7 @@ function NavbarAuth() {
 		<nav className="navbar navbar-expand-lg navbar-light fixed-top">
 			<div className="container">
 				<NavLink className="navbar-brand" to="/dashboard">
-					Home
+					Dashboard
 				</NavLink>
 				<div className="collapse navbar-collapse"
 					 id="navbarTogglerDemo02">

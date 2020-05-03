@@ -7,9 +7,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 
-import Login from "./components/auth/Login.js";
+import Login from "./pages/Login.js";
 import Logout from "./components/auth/Logout";
-import SignupForm from "./components/auth/Signup";
+import SignupForm from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import BackgroundImagePage from "./components/Background";
 import AssistantForm from "./components/AssistantForm";
