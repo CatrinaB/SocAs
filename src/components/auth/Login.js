@@ -1,14 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-	updateEmail,
-	updatePassword,
 	updateToken,
 	updateTokenExpiration,
-	updateUserId
 } from "../../redux/actions/auth-actions";
 import { Button } from "@material-ui/core";
-import store from "../../redux/store";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailRounded from "@material-ui/icons/EmailRounded";
@@ -23,28 +19,36 @@ class LoginForm extends React.Component {
 		super(props);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onChange = this.onChange.bind(this);
-		this.state = {
-			flag: ""
-		};
+		this.state = {};
 	}
 
 	onChange(e) {
 		if (e.target.name === "email") {
-			if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(e.target.value)) {
-				this.setState({ ...this.state, errorEmail: false });
-				updateEmail(e.target.value);
-			} else {
+			if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(e.target.value)) {
 				this.setState({ ...this.state, errorEmail: true });
+			} else {
+				this.setState({...this.state, errorEmail: false, email: e.target.value});
 			}
-		} else {
-			updatePassword(e.target.value);
+		} else if(e.target.name === "password") {
+			if(e.target.value.length === 0) {
+				this.setState({ ...this.state, errorPassword: true });
+			} else {
+				this.setState({...this.state, errorPassword: false, password: e.target.value});
+			}
 		}
 	}
 
+	handlePasswordClick = () => {
+		this.setState({
+			...this.state,
+			showPassword: !this.state.showPassword
+		});
+	};
+
 	onSubmit(e) {
 		e.preventDefault();
-		const email = store.getState().auth.email;
-		const password = store.getState().auth.newPassword;
+		const email = this.state.email;
+		const password = this.state.password;
 		const request = {
 			query: `
                 query {
@@ -57,7 +61,7 @@ class LoginForm extends React.Component {
                 }
             `
 		};
-		fetch("http://localhost:8000/graphql", {
+		fetch(process.env.REACT_APP_GRAPHQL_ENDPOINT, {
 			method: "POST",
 			body: JSON.stringify(request),
 			headers: {
@@ -65,8 +69,8 @@ class LoginForm extends React.Component {
 			}
 		}).then(res => {
 			if (res.status !== 200 && res.status !== 201) {
-				console.log('ERROR');
-				throw new Error("Failed!");
+				console.log(`Error response for login: ${res.body}`);
+				throw new Error("Something went wrong!");
 			}
 			return res.json();
 		}).then(resData => {
@@ -77,31 +81,29 @@ class LoginForm extends React.Component {
 				for (let error in resData.errors) {
 					alertMessage += resData.errors[error].message + "\n";
 				}
-				alert(alertMessage);
+				throw new Error(alertMessage);
 			} else if (resData.data.login.token) {
-				this.setState({
-					flag: resData.data.login
-				});
-				updateUserId(resData.data.login.userId);
 				updateToken(resData.data.login.token);
 				updateTokenExpiration(resData.data.login.tokenExpiration);
 				this.props.history.push("/dashboard");
 			} else {
-				alert('Something went wrong');
+				throw new Error("Something went wrong!");
 			}
 		}).catch(err => {
-			console.log("Login error: ", err);
-			alert("Something went wrong");
+			this.setState({...this.state, loginError: true, loginErrorMessage: err.message});
 		});
 	}
 
 	render() {
-		if (store.getState().auth.token) {
+		if (this.props.token) {
 			return (<Redirect to="/dashboard"/>);
 		}
 
 		return (
 			<div style={{ marginTop: "140px" }}>
+				{this.state.loginError &&
+					(<h3>{this.state.loginErrorMessage}</h3>)
+				}
 				<form autoComplete="off" onSubmit={this.onSubmit}>
 					<TextField
 						required
@@ -115,7 +117,6 @@ class LoginForm extends React.Component {
 								: ""
 						}
 						onChange={this.onChange}
-						value={this.props.email}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
@@ -132,13 +133,14 @@ class LoginForm extends React.Component {
 						id="password"
 						label="Password"
 						type={this.state.showPassword ? "text" : "password"}
-						helperText={
-							this.state.error ? "Password too short" : ""
-						}
 						name="password"
 						onChange={this.onChange}
-						value={this.props.password}
-						error={this.state.error}
+						error={this.state.errorPassword}
+						helperText={
+							this.state.errorPassword
+								? "Invalid password"
+								: ""
+						}
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start">
@@ -168,6 +170,7 @@ class LoginForm extends React.Component {
 						color="primary"
 						style={{ marginTop: "40px" }}
 						type="submit"
+						disabled={this.state.errorPassword || this.state.errorEmail}
 					>
 						Login
 					</Button>
@@ -179,8 +182,7 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		email: state.email,
-		password: state.newPassword
+		token: state.auth.token,
 	};
 };
 
