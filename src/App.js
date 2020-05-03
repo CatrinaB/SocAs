@@ -11,7 +11,7 @@ import "mdbreact/dist/css/mdb.css";
 
 import Login from "./pages/Login.js";
 import Logout from "./components/auth/Logout";
-import SignupForm from "./pages/Signup";
+import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import AssistantForm from "./components/AssistantForm";
 import DisabilityForm from "./components/DisabilityForm";
@@ -31,10 +31,10 @@ function App() {
 				<Provider store={store}>
 					<Router>
 						<Navbar/>
-						<main style={{margin: "5%"}}>
+						<main style={{ margin: "5%" }}>
 							<Switch>
 								<Route path="/login" component={Login}/>
-								<Route path="/signup" component={SignupForm}/>
+								<Route path="/signup" component={Signup}/>
 								<Route path="/assistantForm" component={AssistantForm}/>
 								<Route path="/disabilityForm" component={DisabilityForm}/>
 								<PrivateRoute path="/dashboard" component={Dashboard}/>

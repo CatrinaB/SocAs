@@ -16,16 +16,20 @@ function NavbarNoAuth() {
 	return (
 		<AppBar position="static" color="primary">
 			<Toolbar>
-    			<Typography variant="h6" className={styles.title}>
-      				The Social Network
-    			</Typography>
-    			<Button variant="contained" color="secondary" component={Link} to="/login" className={styles.menuButton}>
-					Login
+				<Typography variant="h6" className={styles.title}>
+					The Social Network
+				</Typography>
+				<Button variant="contained" color="secondary" className={styles.menuButton}>
+					<Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
+						Login
+					</Link>
 				</Button>
-				<Button variant="contained" color="secondary" component={Link} to="/signup" className={styles.menuButton}>
-					Signup
+				<Button variant="contained" color="secondary" className={styles.menuButton}>
+					<Link style={{ textDecoration: 'none', color: 'white' }} to="/signup">
+						Signup
+					</Link>
 				</Button>
-  			</Toolbar>
+			</Toolbar>
 		</AppBar>
 	);
 }

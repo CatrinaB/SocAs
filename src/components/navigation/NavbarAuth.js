@@ -19,16 +19,22 @@ function NavbarAuth() {
 				<Typography variant="h6" className={styles.title}>
 					The Social Network
 				</Typography>
-				<Button variant="contained" color="secondary" component={Link} to="/dashboard" className={styles.menuButton}>
-					Dashboard
+				<Button variant="contained" color="secondary" className={styles.menuButton}>
+					<Link style={{ textDecoration: 'none', color: 'white' }} to="/dashboard">
+						Dashboard
+					</Link>
 				</Button>
-				<Button variant="contained" color="secondary" component={Link} to="/account" className={styles.menuButton}>
-					Account
+				<Button variant="contained" color="secondary" className={styles.menuButton}>
+					<Link style={{ textDecoration: 'none', color: 'white' }} to="/account">
+						Account
+					</Link>
 				</Button>
-				<Button variant="contained" color="secondary" component={Link} to="/logout" className={styles.menuButton}>
-					Logout
+				<Button variant="contained" color="secondary" className={styles.menuButton}>
+					<Link style={{ textDecoration: 'none', color: 'white' }} to="/logout">
+						Logout
+					</Link>
 				</Button>
-  			</Toolbar>
+			</Toolbar>
 		</AppBar>
 	);
 }

@@ -24,12 +24,12 @@ import {
 	FormLabel,
 	FormControl
 } from "@material-ui/core";
-import { Redirect } from "react-router-dom";
 
 class SignupForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.onChange = this.onChange.bind(this);
 		this.state = {
 			user: "",
 			radio: null,
@@ -40,7 +40,6 @@ class SignupForm extends React.Component {
 			showConfirmPassword: false,
 			errorEmail: false
 		};
-		this.onChange = this.onChange.bind(this);
 		this.handlePasswordClick = this.handlePasswordClick.bind(this);
 		this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
 		this.handleConfirmPasswordClick = this.handleConfirmPasswordClick.bind(
