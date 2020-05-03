@@ -10,21 +10,19 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import "../../App.css";
 
-
-
 function NavbarNoAuth() {
 	const styles = navStyles();
 
 	return (
-		<AppBar position="static">
+		<AppBar position="static" color="primary">
 			<Toolbar>
     			<Typography variant="h6" className={styles.title}>
       				The Social Network
     			</Typography>
-    			<Button component={Link} to="/login" className={styles.button}>
+    			<Button variant="contained" color="secondary" component={Link} to="/login" className={styles.menuButton}>
 					Login
 				</Button>
-				<Button component={Link} to="/signup">
+				<Button variant="contained" color="secondary" component={Link} to="/signup" className={styles.menuButton}>
 					Signup
 				</Button>
   			</Toolbar>

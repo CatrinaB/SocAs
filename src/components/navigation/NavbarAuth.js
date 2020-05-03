@@ -10,23 +10,22 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
-
 function NavbarAuth() {
 	const styles = navStyles();
 
 	return (
 		<AppBar position="static">
 			<Toolbar>
-				<Button component={Link} to="/dashboard">
+				<Typography variant="h6" className={styles.title}>
+					The Social Network
+				</Typography>
+				<Button variant="contained" color="secondary" component={Link} to="/dashboard" className={styles.menuButton}>
 					Dashboard
 				</Button>
-    			<Typography variant="h6" className={styles.title}>
-      				The Social Network
-    			</Typography>
-				<Button component={Link} to="/account">
+				<Button variant="contained" color="secondary" component={Link} to="/account" className={styles.menuButton}>
 					Account
 				</Button>
-				<Button component={Link} to="/logout">
+				<Button variant="contained" color="secondary" component={Link} to="/logout" className={styles.menuButton}>
 					Logout
 				</Button>
   			</Toolbar>

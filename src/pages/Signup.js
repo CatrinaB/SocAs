@@ -250,12 +250,8 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
-		if (store.getState().auth.token) {
-			return (<Redirect to="/dashboard"/>);
-		}
-
 		return (
-			<div style={{ marginTop: "140px" }}>
+			<div>
 				<form autoComplete="off" onSubmit={this.onSubmit}>
 					<TextField
 						required
