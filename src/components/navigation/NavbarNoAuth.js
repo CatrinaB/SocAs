@@ -1,35 +1,34 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { navStyles } from './nav-style';
+import { Link } from 'react-router-dom';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import "../../App.css";
 
+
+
 function NavbarNoAuth() {
+	const classes = navStyles();
+
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light fixed-top">
-			<div className="container">
-				<NavLink className="navbar-brand" to={"/"}>
-					Home
-				</NavLink>
-				<div
-					className="collapse navbar-collapse"
-					id="navbarTogglerDemo02">
-					<ul className="navbar-nav ml-auto">
-						<li className="nav-item">
-							<NavLink className="nav-link" to="/">
-								Login
-							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink className="nav-link" to="/signup">
-								Sign up
-							</NavLink>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<AppBar>
+			<Toolbar>
+    			<Typography variant="h6" className={classes.title}>
+      				The Social Network
+    			</Typography>
+    			<Button component={Link}to="/login">
+					Login
+				</Button>
+				<Button component={Link}to="/signup">
+					Signup
+				</Button>
+  			</Toolbar>
+		</AppBar>
 	);
 }
 
