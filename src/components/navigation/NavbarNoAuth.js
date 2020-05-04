@@ -19,16 +19,16 @@ function NavbarNoAuth() {
 				<Typography variant="h6" className={styles.title}>
 					The Social Network
 				</Typography>
-				<Button variant="contained" color="secondary" className={styles.menuButton}>
-					<Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
+				<Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
+					<Button variant="contained" color="secondary" className={styles.menuButton}>
 						Login
-					</Link>
-				</Button>
-				<Button variant="contained" color="secondary" className={styles.menuButton}>
-					<Link style={{ textDecoration: 'none', color: 'white' }} to="/signup">
+					</Button>
+				</Link>
+				<Link style={{ textDecoration: 'none', color: 'white' }} to="/signup">
+					<Button variant="contained" color="secondary" className={styles.menuButton}>
 						Signup
-					</Link>
-				</Button>
+					</Button>
+				</Link>
 			</Toolbar>
 		</AppBar>
 	);
