@@ -1,12 +1,11 @@
 import { Redirect, Route } from "react-router-dom";
 import React from "react";
 import { connect } from "react-redux";
-import store from "../../redux/store";
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route {...rest} render={props => {
-		const token = store.getState().auth.token;
+		const token = props.token;
 		return (
 			token !== undefined && token != null
 				? <Component {...props} />
