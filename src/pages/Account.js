@@ -22,7 +22,7 @@ class Account extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			hasExperience: null
+			hasExperience: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 	}
@@ -45,6 +45,11 @@ class Account extends React.Component {
 						justifyContent: "center",
 						spaceBetween: "20px"
 					}}>
+						<Button variant="contained" color="secondary" style={{ margin: FORM_ITEMS_MARGIN }}
+								startIcon={<EmojiPeopleIcon/>}>Update
+							details</Button>
+						<Button variant="contained" color="secondary" style={{ margin: FORM_ITEMS_MARGIN }}
+								startIcon={<DeleteIcon/>}>Delete account</Button>
 						<Avatar alt="Sexy profile picture" src="http://localhost:3000/avatar.png"
 								style={{ margin: FORM_ITEMS_MARGIN }}/>
 						<TextField id="email" label="E-mail" style={{ margin: FORM_ITEMS_MARGIN }}/>
