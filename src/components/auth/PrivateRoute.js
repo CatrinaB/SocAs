@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route {...rest} render={props => {
-		const token = props.token;
+		const token = rest.token;
 		return (
 			token !== undefined && token != null
 				? <Component {...props} />
