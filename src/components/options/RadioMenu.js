@@ -21,7 +21,7 @@ const RadioMenu = (props) => {
                 name={props.radioGroupName}
                 value={props.radioGroupValue}
                 onChange={props.radioGroupOnChange}
-                style={props.radioGroupStyle}
+                style={props.style}
             >
                 {props.menuItems.map((el) => (
                     <FormControlLabel
