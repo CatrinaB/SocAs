@@ -22,9 +22,58 @@ class Account extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			hasExperience: false
+			hasExperience: false,
+			name: "",
+			email: "",
 		};
 		this.handleChange = this.handleChange.bind(this);
+	}
+
+	componentDidMount() {
+		const request = {
+			query: `
+                query {
+                    getAssistant {
+                        name
+                    }
+                    getUser {
+                    	email
+                    }
+                }
+            `
+		};
+		fetch(process.env.REACT_APP_GRAPHQL_ENDPOINT, {
+			method: "POST",
+			body: JSON.stringify(request),
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": this.props.token,
+			}
+		}).then(res => {
+			if (res.status !== 200 && res.status !== 201) {
+				console.log(`Error response for assistant retrieve: ${JSON.stringify(res.body, null, 2)}`);
+				throw new Error("Something went wrong!");
+			}
+			return res.json();
+		}).then(resData => {
+			if (resData.errors && resData.errors.length > 0) {
+				let alertMessage = "";
+				for (let error in resData.errors) {
+					alertMessage += resData.errors[error].message + "\n";
+				}
+				throw new Error(alertMessage);
+			} else {
+				const assistant = resData.data.getAssistant;
+				const user = resData.data.getUser;
+				this.setState({
+					name: assistant.name,
+					email: user.email
+				});
+			}
+		}).catch(err => {
+			console.log(err.message);
+			this.setState({ ...this.state, loginError: true, loginErrorMessage: err.message });
+		});
 	}
 
 	handleChange(e) {
@@ -52,8 +101,10 @@ class Account extends React.Component {
 								startIcon={<DeleteIcon/>}>Delete account</Button>
 						<Avatar alt="Sexy profile picture" src="http://localhost:3000/avatar.png"
 								style={{ margin: FORM_ITEMS_MARGIN }}/>
-						<TextField id="email" label="E-mail" style={{ margin: FORM_ITEMS_MARGIN }}/>
-						<TextField id="name" label="Name" style={{ margin: FORM_ITEMS_MARGIN }}/>
+						<TextField value={this.state.email} id="email" label="E-mail"
+								   style={{ margin: FORM_ITEMS_MARGIN }}/>
+						<TextField value={this.state.name} id="name" label="Name"
+								   style={{ margin: FORM_ITEMS_MARGIN }}/>
 						<FormControl style={{ margin: FORM_ITEMS_MARGIN }}>
 							<InputLabel>Gender</InputLabel>
 							<Select id="gender">
@@ -264,7 +315,8 @@ class Account extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		isAssistant: true
+		isAssistant: true,
+		token: state.auth.token
 	};
 };
 

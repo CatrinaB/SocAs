@@ -95,6 +95,8 @@ module.exports = buildSchema(`
 
     type RootQuery {
         login(email: String!, password: String!): AuthData
+        getAssistant: Assistant
+        getUser: User
     }
 
     type RootMutation {

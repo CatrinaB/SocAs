@@ -64,7 +64,7 @@ class Login extends React.Component {
 			}
 		}).then(res => {
 			if (res.status !== 200 && res.status !== 201) {
-				console.log(`Error response for login: ${res.body}`);
+				console.log(`Error response for login: ${res}`);
 				throw new Error("Something went wrong!");
 			}
 			return res.json();

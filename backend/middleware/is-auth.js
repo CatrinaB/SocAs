@@ -4,13 +4,13 @@ const logger = require('../utils/logger');
 module.exports = (req, res, next) => {
 	logger.silly('Auth middleware');
 
-	const authHeader = req.get('Authorization');
-	if (!authHeader) {
+	const token = req.get('Authorization');
+	if (token === undefined  || token === null) {
 		req.isAuth = false;
 		logger.silly('No Authorization header provided');
 		return next();
 	}
-	const token = authHeader.split(' ')[1];
+
 	if (!token || token === '') {
 		req.isAuth = false;
 		logger.silly('No Token provided');

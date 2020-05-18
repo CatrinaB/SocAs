@@ -1,6 +1,7 @@
 const Assistant = require("../../models/assistant");
-
+const jwt = require("jsonwebtoken");
 const logger = require("../../utils/logger");
+
 
 const SERVICE_UNAVAILABLE_CREATE_ASSISTANT = "Service unavailable: unable to create new assistant";
 const SERVICE_UNAVAILABLE_UPDATE_ASSISTANT = "Service unavailable: unable to update assistant";
@@ -74,5 +75,22 @@ module.exports = {
 		return {
 			...result._doc
 		};
+	},
+	getAssistant: async (args, req) => {
+		logger.debug("Attempt to retrieve assistant details");
+
+		logger.info(req);
+
+		if (!req.isAuth) {
+			logger.debug("Not authenticated")
+			throw new Error("Not authenticated")
+		}
+
+		try {
+			return await Assistant.findOne({ _id: req.userId });
+		} catch (err) {
+			logger.error(`Error occurred while searching for assistant: ${err}`);
+			throw new Error(SERVICE_UNAVAILABLE_UPDATE_ASSISTANT);
+		}
 	}
 };

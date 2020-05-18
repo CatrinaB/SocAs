@@ -13,6 +13,7 @@ const USER_ALREADY_EXISTS_ERROR = "User already exists";
 const USER_NOT_EXISTS_ERROR = "Incorrect email or password";
 const WRONG_PASSWORD_ERROR = "Incorrect email or password";
 const SERVICE_UNAVAILABLE_CREATE_USER = "Service unavailable: unable to create new user";
+const SERVICE_UNAVAILABLE_GET_USER = "Service unavailable: unable to retrieve user";
 const SERVICE_UNAVAILABLE_LOGIN_USER = "Service unavailable: unable to login user";
 
 module.exports = {
@@ -101,5 +102,22 @@ module.exports = {
 			tokenExpiration: TOKEN_EXPIRATION,
 			userType: loginUser.userType
 		};
+	},
+	getUser: async (args, req) => {
+		logger.debug("Attempt to retrieve user details");
+
+		logger.info(req);
+
+		if (!req.isAuth) {
+			logger.debug("Not authenticated")
+			throw new Error("Not authenticated")
+		}
+
+		try {
+			return await User.findOne({ _id: req.userId });
+		} catch (err) {
+			logger.error(`Error occurred while searching for user: ${err}`);
+			throw new Error(SERVICE_UNAVAILABLE_GET_USER);
+		}
 	}
 };
