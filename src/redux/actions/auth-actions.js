@@ -71,6 +71,7 @@ export function updateName(params) {
 }
 
 export function updateGender(params) {
+    logger.silly(`Updating gender to ${params}`);
     return store.dispatch({
         type: UPDATE_GENDER,
         payload: params,

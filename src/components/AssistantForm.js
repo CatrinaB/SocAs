@@ -59,6 +59,7 @@ class AssistantForm extends React.Component {
         return new Date(`${diff}-${date.getMonth() + 1}-${date.getDate()}`);
     }
 
+    // https://medium.com/@bretdoucette/understanding-this-setstate-name-value-a5ef7b4ea2b4
     handleChange(e) {
         if (e.target === undefined) {
             try {
@@ -72,6 +73,7 @@ class AssistantForm extends React.Component {
                 });
             }
         } else {
+            logger.silly(e.target.name);
             switch (e.target.name) {
                 case "gender":
                     updateGender(e.target.value);
@@ -171,15 +173,11 @@ class AssistantForm extends React.Component {
                 mutation {
                     updateAssistant(existingAssistantInput: {
                         _id: "${userId}"
-                        gender: '${gender}'
-                        dob: '${date}'
-                        experience: '${exp}'
+                        gender: "${gender}"
+                        dob: "${date}"
+                        experience: ${exp}
                     }) {
-                        _id
                         name
-                        gender
-                        dob
-                        experience
                     }
                 }
             `

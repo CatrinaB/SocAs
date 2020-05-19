@@ -1,4 +1,5 @@
 const Assistant = require("../../models/assistant");
+const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const logger = require("../../utils/logger");
 
@@ -40,11 +41,16 @@ module.exports = {
 		logger.debug(`Attempt of updating assistant: ${JSON.stringify(args.existingAssistantInput, null, 2)}`);
 
 		let assistant;
+		let user;
 
 		try {
+			logger.silly(`Looking for assistant and user with given id`);
 			assistant = await Assistant.findOne({ _id: args.existingAssistantInput._id });
+			user = await User.findOne({ _id: args.existingAssistantInput._id });
+			logger.silly(`Found assistant and user: ${JSON.stringify(assistant, null, 2)} 
+			${JSON.stringify(user, null, 2)}`);
 		} catch (err) {
-			logger.error(`Error occurred while searching for assistant: ${err}`);
+			logger.error(`Error occurred while searching for assistant and user: ${err}`);
 			throw new Error(SERVICE_UNAVAILABLE_UPDATE_ASSISTANT);
 		}
 
@@ -54,16 +60,18 @@ module.exports = {
 		}
 
 		const updatedAssistant = new Assistant({
-			...assistant,
 			dob: args.existingAssistantInput.dob,
-			experience: args.newAssistantInput.experience,
+			experience: args.existingAssistantInput.experience,
 			experienceTime: args.existingAssistantInput.experienceTime,
-			experienceType: args.newAssistantInput.experienceType,
-			allottedTime: args.existingAssistantInput.allottedTime
+			experienceType: args.existingAssistantInput.experienceType,
+			allottedTime: args.existingAssistantInput.allottedTime,
+			name: assistant.name
 		});
 
+		logger.silly(`Created updated instance: ${JSON.stringify(updatedAssistant, null, 2)}`);
 		let result;
 		try {
+			logger.silly("Updating assistant");
 			result = await updatedAssistant.save();
 		} catch (err) {
 			logger.error(`Error occurred while updating assistant: ${err}`);
