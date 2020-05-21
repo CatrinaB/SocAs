@@ -59,16 +59,20 @@ module.exports = {
 			throw new Error("Assistant does not exist");
 		}
 
+		logger.debug(`disab exp: ${args.existingAssistantInput.disabilityExp}`)
+		// TODO: CHECK WHY ...assistant does not work
 		const updatedAssistant = new Assistant({
 			dob: args.existingAssistantInput.dob,
 			experience: args.existingAssistantInput.experience,
 			experienceTime: args.existingAssistantInput.experienceTime,
 			experienceType: args.existingAssistantInput.experienceType,
+			disabilityExp: args.existingAssistantInput.disabilityExp,
 			allottedTime: args.existingAssistantInput.allottedTime,
-			name: assistant.name
+			name: assistant.name,
+			employmentStatus: args.existingAssistantInput.employmentStatus,
 		});
 
-		logger.silly(`Created updated instance: ${JSON.stringify(updatedAssistant, null, 2)}`);
+		logger.silly(`Created updated instance: ${JSON.stringify(assistant, null, 2)}`);
 		let result;
 		try {
 			logger.silly("Updating assistant");

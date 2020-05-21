@@ -19,18 +19,33 @@ const assistantSchema = new Schema({
 		required: false
 	},
 	experienceTime: {
-		type: Number,
+		type: String,
 		required: false
 	},
 	experienceType: {
 		type: Array,
 		required: false
 	},
+	disabilityExp: {
+		type: Array,
+		required: false
+	},
 	allottedTime: {
 		type: Number,
 		required: false
+	},
+	employmentStatus: {
+		type: String,
+		required: false
+	},
+	helpType: {
+		type: Array,
+		required: false
+	},
+	reason: {
+		type: String,
+		required: false
 	}
-	//typeOfHelp
 });
 
 module.exports = mongoose.model("Assistant", assistantSchema);

@@ -2,21 +2,58 @@ import React from "react";
 import { connect } from "react-redux";
 
 import {
-    MDBContainer,
-    MDBRow,
-    MDBCol,
-    MDBBtn,
-    MDBInput
-} from "mdbreact";
+    updateGender,
+    updateExperience,
+    updateDOB
+} from "../redux/actions/auth-actions";
+
+import { FormControl, TextField, Button } from "@material-ui/core";
+import {
+    KeyboardDatePicker,
+    MuiPickersUtilsProvider
+} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import SelectMenu from "./options/SelectMenu";
+import RadioMenu from "./options/RadioMenu";
+import CheckboxMenu from "./options/CheckboxMenu";
+import logger from "../utils/logger";
 
 class DisabilityForm extends React.Component {
     state = {
-        radio: ""
-    };
+		radio: "",
+		gender: null,
+		date: null,
+		status: null,
+		strangerExperience: null,
+		checkedMotor: false,
+		checkedAuditory: false,
+		checkedVision: false,
+		checkedMental: false,
+		seriousness: "",
+		checkedSchoolworkExp: false,
+		checkedOccasionalExp: false,
+		checkedPermanentExp: false,
+		checkedSchoolwork: false,
+		checkedOccasional: false,
+		checkedPermanent: false,
+		dateError: false,
+		dateErrorText: "",
+		timeAssistance: "",
+		stateAid: "",
+		reason: ""
+	};
 
     constructor(props) {
         super(props);
-        this.onSubmit = this.onSubmit.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+	}
+	
+	calculateDate() {
+        let date = new Date();
+        let year = date.getFullYear();
+        let diff = year - 14;
+        return new Date(`${diff}-${date.getMonth() + 1}-${date.getDate()}`);
     }
 
     onClick = nr => () => {
@@ -25,17 +62,113 @@ class DisabilityForm extends React.Component {
         });
     };
 
-    onChange(e) {
-        // switch (e.target.name) {
-        //     case "username":
-        //         updateUsername(e.target.value);
-        //         break;
-        //     case "password":
-        //         updatePassword(e.target.value);
-        //         break;
-        //     default:
-        //         updateConfirmPassword(e.target.value);
-        // }
+    handleChange(e) {
+			if (e.target === undefined) {
+				try {
+					updateDOB(e.toISOString());
+					this.setState({ ...this.state, dateError: false });
+				} catch (err) {
+					this.setState({
+						...this.state,
+						dateError: true,
+						dateErrorText: err.message
+					});
+				}
+			} else {
+				logger.silly(e.target.name);
+				switch (e.target.name) {
+					case "gender":
+						updateGender(e.target.value);
+						break;
+	
+					case "motor":
+						this.setState({
+							...this.state,
+							checkedMotor: !this.state.checkedMotor
+						});
+						break;
+	
+					case "auditory":
+						this.setState({
+							...this.state,
+							checkedAuditory: !this.state.checkedAuditory
+						});
+						break;
+	
+					case "vision":
+						this.setState({
+							...this.state,
+							checkedVision: !this.state.checkedVision
+						});
+						break;
+	
+					case "mental":
+						this.setState({
+							...this.state,
+							checkedMental: !this.state.checkedMental
+						});
+						break;
+	
+					case "seriousness":
+						this.setState({
+							...this.state,
+							seriousness: e.target.value
+						});
+						break;
+	
+					case "timeAssistance":
+						this.setState({
+							...this.state,
+							timeAssistance: e.target.value
+						});
+						break;
+	
+					case "strangersExperience":
+						this.setState({
+							...this.state,
+							strangersExperience: e.target.value
+						});
+						break;
+	
+					case "schoolwork":
+						this.setState({
+							...this.state,
+							checkedSchoolwork: !this.state.checkedSchoolwork
+						});
+						break;
+	
+					case "occasional":
+						this.setState({
+							...this.state,
+							checkedOccasional: !this.state.checkedOccasional
+						});
+						break;
+	
+					case "permanent":
+						this.setState({
+							...this.state,
+							checkedPermanent: !this.state.checkedPermanent
+						});
+						break;
+
+					case "stateAid":
+						this.setState({
+							...this.state,
+							stateAid: e.target.value
+						});
+						break;
+
+					case "reason":
+						this.setState({
+							...this.state,
+							reason: e.target.value
+						});
+						break;
+	
+					default:
+						this.setState({ ...this.state, status: e.target.value });
+				}
+			}
     }
 
     onSubmit(e) {
@@ -47,184 +180,261 @@ class DisabilityForm extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    <MDBContainer>
-                        <MDBRow className="d-flex justify-content-center">
-                            <MDBCol md="6">
-                                <form>
-                                    <p className="h5 text-center mt-3">
-                                        Disability form
-                                    </p>
-                                    <div className="mt-5 grey-text">
-                                        <div
-                                            name="gender"
-                                            onChange={this.onChange}
-                                            value={this.props.user}
-                                        >
-                                            <select className="browser-default mb-3 custom-select">
-                                                <option>
-                                                    What's your gender?
-                                                </option>
-                                                <option value="1">
-                                                    Male
-                                                </option>
-                                                <option value="2">
-                                                    Female
-                                                </option>
-                                                <option value="3">Other</option>
-                                            </select>
+                 <form onSubmit={this.onSubmit}>
+                    <FormControl
+                        component="fieldset"
+                        style={{ width: "400px", textAlign: "left" }}
+                    >
+                        <SelectMenu
+                            inputLabelId="gender"
+                            required={true}
+                            selectLabelId="label-select-gender"
+                            selectId="select-gender"
+                            selectName="gender"
+                            selectValue={this.props.gender}
+                            onChange={this.handleChange}
+                            selectStyle={{ width: "100px" }}
+                            menuItems={[
+                                { value: "Female", option: "Female" },
+                                { value: "Male", option: "Male" },
+                                { value: "Other", option: "Other" }
+                            ]}
+                        />
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <KeyboardDatePicker
+                                // error={this.state.dateError}
+                                // helperText={
+                                //     this.state.dateError &&
+                                //     this.state.dateErrorText
+                                // }
+                                required
+                                disableFuture
+                                variant="inline"
+                                format="dd/MM/yyyy"
+                                margin="normal"
+                                id="date-picker-inline"
+                                label="Date of birth"
+                                value={this.props.dob}
+                                onChange={this.handleChange}
+                                KeyboardButtonProps={{
+                                    "aria-label": "change date"
+                                }}
+                                maxDate={this.calculateDate()}
+                                maxDateMessage="You need to be at least 14 years old to sign up!"
+                            />
+                        </MuiPickersUtilsProvider>
+                        
+						<RadioMenu
+                            formLabelComponent="label"
+                            required={true}
+                            formLabelText="Status"
+                            radioGroupAriaLabel="status"
+                            radioGroupName="status"
+                            radioGroupValue={this.state.status}
+                            radioGroupOnChange={this.handleChange}
+                            menuItems={[
+                                {
+                                    value: "pupil",
+                                    color: "primary",
+                                    label: "Pupil",
+                                    labelPlacement: "end"
+                                },
+                                {
+                                    value: "student",
+                                    color: "primary",
+                                    label: "Student",
+                                    labelPlacement: "end"
+                                },
+                                {
+                                    value: "employed",
+                                    color: "primary",
+                                    label: "Employed",
+                                    labelPlacement: "end"
+                                },
+                                {
+                                    value: "unemployed",
+                                    color: "primary",
+                                    label: "Unemployed",
+                                    labelPlacement: "end"
+                                },
+                                {
+                                    value: "retired",
+                                    color: "primary",
+                                    label: "Retired",
+                                    labelPlacement: "end"
+                                },
+                                {
+                                    value: "other",
+                                    color: "primary",
+                                    label: (
+                                        <div style={{ marginTop: "10px" }}>
+                                            Other:{" "}
+                                            <TextField name="status-other" />
                                         </div>
-                                        <div
-                                            name="age"
-                                            onChange={this.onChange}
-                                            value={this.props.user}
-                                        >
-                                            <select className="browser-default mb-3 custom-select">
-                                                <option>
-                                                    How old are you?
-                                                </option>
-                                                <option value="1">0-5 years old</option>
-                                                <option value="2">6-10 years old</option>
-                                                <option value="3">11-17 years old</option>
-                                                <option value="4">18-25 years old</option>
-                                                <option value="5">26-35 years old</option>
-                                                <option value="6">36-45 years old</option>
-                                                <option value="7">46-55 years old</option>
-                                                <option value="8">56+ years old</option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            name="status"
-                                            onChange={this.onChange}
-                                            value={this.props.user}
-                                        >
-                                            <select className="browser-default mb-3 custom-select">
-                                                <option>
-                                                    What's your status?
-                                                </option>
-                                                <option value="1">Pupil</option>
-                                                <option value="2">Student</option>
-                                                <option value="3">Employee</option>
-                                                <option value="4">Retired</option>
-                                                <option value="5">Other</option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            name="problems"
-                                            onChange={this.onChange}
-                                            value={this.props.user}
-                                        >
-                                            <select className="browser-default mb-3 custom-select">
-                                                <option>
-                                                    What kind of problems do you have?
-                                                </option>
-                                                <option value="1">Blind/Visually impaired</option>
-                                                <option value="2">Deaf/Hearing impairments</option>
-                                                <option value="3">Mobility impaired</option>
-                                                <option value="4">Dyslexia</option>
-                                                <option value="5">Autism</option>
-                                                <option value="6">Alzheimer's/Dementia</option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            name="seriousness"
-                                            onChange={this.onChange}
-                                            value={this.props.user}
-                                        >
-                                            <select className="browser-default mb-3 custom-select">
-                                                <option>
-                                                    How serious is your disability?
-                                                </option>
-                                                <option value="1">1. It's not that bad</option>
-                                                <option value="2">2. </option>
-                                                <option value="3">3. </option>
-                                                <option value="4">4. </option>
-                                                <option value="5">5. Very serious</option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            name="assist-level"
-                                            onChange={this.onChange}
-                                            value={this.props.user}
-                                        >
-                                            <select className="browser-default mb-3 custom-select">
-                                                <option>
-                                                    How much assistance would you need on a weekly basis?
-                                                </option>
-                                                <option value="1">1-2 hours/week</option>
-                                                <option value="2">3-4 hours/week</option>
-                                                <option value="3">5-7 hours/week</option>
-                                                <option value="4">8-10 hours/week</option>
-                                                <option value="5">11-15 hours/week</option>
-                                                <option value="6">16-20 hours/week</option>
-                                                <option value="7">21+ hours/week</option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            name="experience-strangers"
-                                            onChange={this.onChange}
-                                            value={this.props.user}
-                                        >
-                                            <select className="browser-default mb-3 custom-select">
-                                                <option>
-                                                    Do you have experience with strangers helping you out?
-                                                </option>
-                                                <option value="1">No, I can usually handle it myself</option>
-                                                <option value="2">No, only my family and friends have helped me until now</option>
-                                                <option value="3">Yes, strangers usually help me</option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            name="state-aid"
-                                            onChange={this.onChange}
-                                            value={this.props.user}
-                                        >
-                                            <select className="browser-default custom-select">
-                                                <option>
-                                                    Have you also reached for state aid (social assistance)?
-                                                </option>
-                                                <option value="1">No</option>
-                                                <option value="2">Yes</option>
-                                            </select>
-                                        </div>
-                                        <MDBInput
-                                            containerClass="text-left"
-                                            label="What kind of help do you need?"
-                                            type="text"
-                                            name="help"
-                                            onChange={this.onChange}
-                                            value={this.props.confirmPassword}
-                                        />
-                                        <MDBInput
-                                            containerClass="text-left mb-4"
-                                            label="Why do you want to join this project?"
-                                            type="text"
-                                            name="why"
-                                            onChange={this.onChange}
-                                            value={this.props.confirmPassword}
-                                        />
-                                    </div>
-                                    <div className="text-center d-flex justify-content-center">
-                                        <MDBBtn color="primary" type="submit">
-                                            Submit
-                                        </MDBBtn>
-                                    </div>
-                                </form>
-                            </MDBCol>
-                        </MDBRow>
-                    </MDBContainer>
+                                    ),
+                                    labelPlacement: "end"
+                                }
+                            ]}
+                        />
+						<CheckboxMenu
+							formLabelComponent="label"
+							formLabelText="What types of disability or disabilities do you have?"
+							required
+							onChange={this.handleChange}
+							menuItems={[
+								{
+									checked: this.state.checkedMotor,
+									name: "motor",
+									color: "primary",
+									label: "Motor disabilities"
+								},
+								{
+									checked: this.state.checkedAuditory,
+									name: "auditory",
+									color: "primary",
+									label: "Auditory disabilities"
+								},
+								{
+									checked: this.state.checkedVision,
+									name: "vision",
+									color: "primary",
+									label: "Vision disabilities"
+								},
+								{
+									checked: this.state.checkedMental,
+									name: "mental",
+									color: "primary",
+									label: "Mental disabilities"
+								}
+							]}
+						/>
+						
+						<RadioMenu
+							formLabelComponent="label"
+							required={true}
+							formLabelText="How seriously does your disability impact your life?"
+							radioGroupAriaLabel="seriousness"
+							radioGroupName="seriousness"
+							radioGroupValue={this.state.seriousness}
+							radioGroupOnChange={this.handleChange}
+							// prettier-ignore
+							menuItems={[
+								{value: "1", color: "primary", label: "It has very little impact, I can do (almost) everything on my own"},
+								{value: "2", color: "primary", label: "It has some impact, there are a few activities I need assistance with"},
+								{value: "3", color: "primary", label: "It has a signicative impact, "},
+								{value: "4", color: "primary", label: "There are a few things I can do by myself, but most of the time I need assistance"},
+								{value: "5", color: "primary", label: "It impacts every aspect of my life, I need assistance for (almost) every activity"}
+							]}
+						/>
+
+						<RadioMenu
+							formLabelComponent="label"
+							required={true}
+							formLabelText="How much assistance would you need on a daily basis?"
+							radioGroupAriaLabel="time-assistance"
+							radioGroupName="timeAssistance"
+							radioGroupValue={this.state.timeAssistance}
+							radioGroupOnChange={this.handleChange}
+							// prettier-ignore
+							menuItems={[
+								{value: "1", color: "primary", label: "less than 1 hour"},
+								{value: "2", color: "primary", label: "1-2 hours"},
+								{value: "4", color: "primary", label: "3-4 hours"},
+								{value: "8", color: "primary", label: "5-8 hours"},
+								{value: "11", color: "primary", label: "9-11 hours"},
+								{value: "15", color: "primary", label: "12-15 hours"},
+								{value: "19", color: "primary", label: "16-19 hours"},
+								{value: "24", color: "primary", label: "20-24 hours"}
+							]}
+						/>
+						
+						<RadioMenu
+							formLabelComponent="label"
+							required={true}
+							formLabelText="Do you have experience with strangers helping you out?"
+							radioGroupAriaLabel="strangers-experience"
+							radioGroupName="strangersExperience"
+							radioGroupValue={this.state.strangersExperience}
+							radioGroupOnChange={this.handleChange}
+							// prettier-ignore
+							menuItems={[
+								{value: "no-alone", color: "primary", label: "No, I usually do things myself"},
+								{value: "no", color: "primary", label: "No, only my family and friends have assisted me until now"},
+								{value: "yes", color: "primary", label: "Yes, I have been assisted by strangers before"}
+							]}
+						/>
+
+						<RadioMenu
+							formLabelComponent="label"
+							required={true}
+							formLabelText="Do you receive any kind of state aid?"
+							radioGroupAriaLabel="state-aid"
+							radioGroupName="stateAid"
+							radioGroupValue={this.state.stateAid}
+							radioGroupOnChange={this.handleChange}
+							// prettier-ignore
+							menuItems={[
+								{value: "yes", color: "primary", label: "Yes"},
+								{value: "no", color: "primary", label: "No"}
+							]}
+						/>
+
+						<CheckboxMenu
+							formLabelComponent="label"
+							formLabelText="What kind of assistance do you need?"
+							onChange={this.handleChange}
+							menuItems={[
+								{
+									checked: this.state.checkedSchoolwork,
+									name: "schoolwork",
+									color: "primary",
+									label: "Schoolwork"
+								},
+								{
+									checked: this.state.checkedOccasional,
+									name: "occasional",
+									color: "primary",
+									label: "Occasional assistance"
+								},
+								{
+									checked: this.state.checkedPermanentExp,
+									name: "permanent",
+									color: "primary",
+									label: "Permanent assistance"
+								}
+							]}
+						/>
+								
+						<TextField
+							id="reason"
+							label="Why do you want to join this project?"
+							multiline
+							rowsMax={4}
+							value={this.state.reason}
+							onChange={this.handleChange}
+						/>
+							
+						<Button
+							variant="contained"
+							color="primary"
+							style={{ marginTop: "40px" }}
+							type="submit"
+						>
+							Submit
+						</Button>
+					</FormControl>
+                                
                 </form>
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
-    //     return {
-    //         user: state.newUsername,
-    //         password: state.newPassword,
-    //         confirmPassword: state.confirmPassword
-    //     };
+const mapStateToProps = (state) => {
+    return {
+        gender: state.auth.gender,
+        dob: state.auth.dob
+    };
 };
 
 export default connect(mapStateToProps)(DisabilityForm);

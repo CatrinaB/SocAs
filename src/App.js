@@ -36,7 +36,7 @@ function App() {
 								<Route path="/login" component={Login}/>
 								<Route path="/signup" component={Signup}/>
 								<Route path="/assistantForm" component={AssistantForm}/>
-								<Route path="/disabilityForm" component={DisabilityForm}/>
+								<Route path="/disabledForm" component={DisabilityForm}/>
 								<PrivateRoute path="/dashboard" component={Dashboard}/>
 								<PrivateRoute path="/account" component={Account}/>
 								<Route path="/logout" component={Logout}/>

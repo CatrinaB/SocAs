@@ -15,8 +15,9 @@ module.exports = buildSchema(`
         employmentStatus: String
         dob: String
         experience: Boolean
-        experienceTime: Int
-        experienceType: [String]
+        experienceTime: String
+		experienceType: [String]
+		disabilityExp: [String]
         allottedTime: Int
         helpType: [String]
         reason: String
@@ -67,7 +68,8 @@ module.exports = buildSchema(`
         dob: String
         experience: Boolean
         experienceTime: Int
-        experienceType: [String]
+		experienceType: [String]
+		disabilityExp: [String]
         allottedTime: Int
         helpType: [String]
         reason: String
