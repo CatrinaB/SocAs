@@ -9,7 +9,8 @@ import {
     UPDATE_NAME,
     UPDATE_GENDER,
     UPDATE_DOB,
-    UPDATE_EXPERIENCE
+    UPDATE_EXPERIENCE,
+    UPDATE_USER_TYPE
 } from "../actions/action-types";
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
     confirmPassword: "",
     token: null,
     tokenExpiration: null,
+    userType: "",
     userId: null,
     name: "",
     gender: "",
@@ -70,6 +72,13 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 userId: action.payload
+            };
+        }
+
+        case UPDATE_USER_TYPE: {
+            return {
+                ...state,
+                userType: action.payload
             };
         }
 

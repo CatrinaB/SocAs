@@ -9,3 +9,4 @@ export const UPDATE_NAME = "UPDATE_NAME";
 export const UPDATE_GENDER = "UPDATE_GENDER";
 export const UPDATE_DOB = "UPDATE_DOB";
 export const UPDATE_EXPERIENCE = "UPDATE_EXPERIENCE";
+export const UPDATE_USER_TYPE = "UPDATE_USER_TYPE";

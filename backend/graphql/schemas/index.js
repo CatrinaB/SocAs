@@ -14,7 +14,7 @@ module.exports = buildSchema(`
         gender: String
         employmentStatus: String
         dob: String
-        experience: Boolean
+        experience: String
         experienceTime: String
 		experienceType: [String]
 		disabilityExp: [String]
@@ -26,10 +26,9 @@ module.exports = buildSchema(`
     type DisabledPerson {
         _id: ID!
         name: String!
-        surname: String
         gender: String
         employmentStatus: String
-        age: Int
+        dob: String
         disabilities: [String]
         gravity: String
         neededTime: Int
@@ -57,7 +56,7 @@ module.exports = buildSchema(`
         name: String!
         surname: String
         age: Int
-        experience: Int
+        experience: String
         allottedTime: Int
     }
 
@@ -66,7 +65,7 @@ module.exports = buildSchema(`
         gender: String
         employmentStatus: String
         dob: String
-        experience: Boolean
+        experience: String
         experienceTime: Int
 		experienceType: [String]
 		disabilityExp: [String]
@@ -82,10 +81,10 @@ module.exports = buildSchema(`
 
     input ExistingDisabledPersonInput {
         _id: ID!
-        surname: String
+        name: String
         gender: String
         employmentStatus: String
-        age: Int
+        dob: String
         disabilities: [String]
         gravity: String
         neededTime: Int
@@ -97,7 +96,8 @@ module.exports = buildSchema(`
 
     type RootQuery {
         login(email: String!, password: String!): AuthData
-        getAssistant: Assistant
+		getAssistant: Assistant
+		getDisabled: DisabledPerson
         getUser: User
     }
 

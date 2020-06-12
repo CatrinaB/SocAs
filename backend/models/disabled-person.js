@@ -4,52 +4,48 @@ const Schema = mongoose.Schema;
 const disabledPersonSchema = new Schema({
 	name: {
 		type: String,
-		required: true
-	},
-	surname: {
-		type: String,
-		required: false
+		required: true,
 	},
 	gender: {
 		type: String,
-		required: false
+		required: false,
 	},
 	employmentStatus: {
 		type: String,
-		required: false
+		required: false,
 	},
-	age: {
-		type: Number,
-		required: false
+	dob: {
+		type: String,
+		required: false,
 	},
 	disabilities: {
 		type: [String],
-		required: false
+		required: false,
 	},
 	gravity: {
 		type: String,
-		required: false
+		required: false,
 	},
 	neededTime: {
 		type: Number,
-		required: false
+		required: false,
 	},
 	experienceWithStrangers: {
 		type: Boolean,
-		required: false
+		required: false,
 	},
 	stateAid: {
 		type: Boolean,
-		required: false
+		required: false,
 	},
 	helpType: {
 		type: String,
-		required: false
+		required: false,
 	},
 	reason: {
 		type: String,
-		required: false
-	}
+		required: false,
+	},
 });
 
 module.exports = mongoose.model("DisabledPerson", disabledPersonSchema);

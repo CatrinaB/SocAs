@@ -25,23 +25,23 @@ class AssistantForm extends React.Component {
         gender: null,
         date: null,
         status: null,
-		hasExperience: null,
-		disabilityExp: {
-			checkedMotor: false,
-			checkedAuditory: false,
-			checkedVision: false,
-			checkedMental: false
-		},
-		workExp: {
-			checkedSchoolworkExp: false,
-			checkedOccasionalExp: false,
-			checkedPermanentExp: false,
-		},
-		work: {
-			checkedSchoolwork: false,
-			checkedOccasional: false,
-			checkedPermanent: false,
-		},
+        hasExperience: null,
+        disabilityExp: {
+            checkedMotor: false,
+            checkedAuditory: false,
+            checkedVision: false,
+            checkedMental: false
+        },
+        workExp: {
+            checkedSchoolworkExp: false,
+            checkedOccasionalExp: false,
+            checkedPermanentExp: false
+        },
+        work: {
+            checkedSchoolwork: false,
+            checkedOccasional: false,
+            checkedPermanent: false
+        },
         dateError: false,
         dateErrorText: ""
     };
@@ -92,100 +92,108 @@ class AssistantForm extends React.Component {
                 case "motor":
                     this.setState({
                         ...this.state,
-						disabilityExp: {
-							...this.state.disabilityExp,
-						checkedMotor: !this.state.disabilityExp.checkedMotor
-						}
+                        disabilityExp: {
+                            ...this.state.disabilityExp,
+                            checkedMotor: !this.state.disabilityExp.checkedMotor
+                        }
                     });
                     break;
 
                 case "auditory":
                     this.setState({
-						...this.state,
-						disabilityExp: {
-							...this.state.disabilityExp,
-						checkedAuditory: !this.state.disabilityExp.checkedAuditory
-						}
+                        ...this.state,
+                        disabilityExp: {
+                            ...this.state.disabilityExp,
+                            checkedAuditory: !this.state.disabilityExp
+                                .checkedAuditory
+                        }
                     });
                     break;
 
                 case "vision":
                     this.setState({
-						...this.state,
-						disabilityExp: {
-							...this.state.disabilityExp,
-						checkedVision: !this.state.disabilityExp.checkedVision
-						}
+                        ...this.state,
+                        disabilityExp: {
+                            ...this.state.disabilityExp,
+                            checkedVision: !this.state.disabilityExp
+                                .checkedVision
+                        }
                     });
                     break;
 
                 case "mental":
                     this.setState({
-						...this.state,
-						disabilityExp: {
-							...this.state.disabilityExp,
-						checkedMental: !this.state.disabilityExp.checkedMental
-						}
+                        ...this.state,
+                        disabilityExp: {
+                            ...this.state.disabilityExp,
+                            checkedMental: !this.state.disabilityExp
+                                .checkedMental
+                        }
                     });
                     break;
 
                 case "schoolworkExp":
                     this.setState({
-						...this.state,
-						workExp: {
-							...this.state.workExp,
-						checkedSchoolworkExp: !this.state.workExp.checkedSchoolworkExp
-						}
+                        ...this.state,
+                        workExp: {
+                            ...this.state.workExp,
+                            checkedSchoolworkExp: !this.state.workExp
+                                .checkedSchoolworkExp
+                        }
                     });
                     break;
 
                 case "occasionalExp":
                     this.setState({
-						...this.state,
-						workExp: {
-							...this.state.workExp,
-						checkedOccasionalExp: !this.state.workExp.checkedOccasionalExp
-						}
+                        ...this.state,
+                        workExp: {
+                            ...this.state.workExp,
+                            checkedOccasionalExp: !this.state.workExp
+                                .checkedOccasionalExp
+                        }
                     });
                     break;
 
                 case "permanentExp":
                     this.setState({
-						...this.state,
-						workExp: {
-							...this.state.workExp,
-						checkedPermanentExp: !this.state.workExp.checkedPermanentExp
-						}
+                        ...this.state,
+                        workExp: {
+                            ...this.state.workExp,
+                            checkedPermanentExp: !this.state.workExp
+                                .checkedPermanentExp
+                        }
                     });
                     break;
 
                 case "schoolwork":
                     this.setState({
-						...this.state,
-						work: {
-							...this.state.work,
-						checkedSchoolwork: !this.state.work.checkedSchoolwork
-						}
+                        ...this.state,
+                        work: {
+                            ...this.state.work,
+                            checkedSchoolwork: !this.state.work
+                                .checkedSchoolwork
+                        }
                     });
                     break;
 
                 case "occasional":
                     this.setState({
-						...this.state,
-						work: {
-							...this.state.work,
-						checkedOccasional: !this.state.work.checkedOccasional
-						}
+                        ...this.state,
+                        work: {
+                            ...this.state.work,
+                            checkedOccasional: !this.state.work
+                                .checkedOccasional
+                        }
                     });
                     break;
 
                 case "permanent":
                     this.setState({
-						...this.state,
-						work: {
-							...this.state.work,
-						checkedPermanent: !this.state.work.checkedPermanent
-						}
+                        ...this.state,
+                        work: {
+                            ...this.state.work,
+                            checkedPermanent: !this.state.work.checkedPermanent
+                        }
                     });
                     break;
 
@@ -200,15 +208,12 @@ class AssistantForm extends React.Component {
         console.log(this);
         const gender = store.getState().auth.gender;
         const date = store.getState().auth.dob;
-        const exp = store.getState().auth.hasExperience === "true";
-		const userId = store.getState().auth.userId;
-		const disabilityExp = [];
-		Object.entries(this.state.disabilityExp).map( (el) => {
-			if(el[1] === true)
-				disabilityExp.push(el[0]);
-		})
-		console.log(disabilityExp)
-
+        const exp = store.getState().auth.hasExperience === "yes";
+        const userId = store.getState().auth.userId;
+        const disabilityExp = [];
+        Object.entries(this.state.disabilityExp).map((el) => {
+            if (el[1] === true) disabilityExp.push(el[0]);
+        });
         const assistantRequest = {
             query: `
                 mutation {
@@ -218,15 +223,19 @@ class AssistantForm extends React.Component {
                         dob: "${date}"
 						experience: ${exp}
 						employmentStatus: "${this.state.status}"
-						disabilityExp: ${disabilityExp}
+						disabilityExp: ${JSON.stringify(disabilityExp)}
                     }) {
-                        name
+						name
+						gender
+						dob
+						experience
+						employmentStatus
                     }
                 }
             `
-		};
-		
-		console.log(assistantRequest);
+        };
+
+        console.log(assistantRequest);
 
         fetch("http://localhost:8000/graphql", {
             method: "POST",
@@ -283,7 +292,9 @@ class AssistantForm extends React.Component {
     }
 
     render() {
-		Object.entries(this.state.disabilityExp).map(el => console.log('exp ', typeof el[0]));
+        Object.entries(this.state.disabilityExp).map((el) =>
+            console.log("exp ", typeof el[0])
+        );
         return (
             <div style={{ marginTop: "140px" }}>
                 <form onSubmit={this.onSubmit}>
@@ -432,25 +443,29 @@ class AssistantForm extends React.Component {
                                     onChange={this.handleChange}
                                     menuItems={[
                                         {
-                                            checked: this.state.disabilityExp.checkedMotor,
+                                            checked: this.state.disabilityExp
+                                                .checkedMotor,
                                             name: "motor",
                                             color: "primary",
                                             label: "Motor disabilities"
                                         },
                                         {
-                                            checked: this.state.disabilityExp.checkedAuditory,
+                                            checked: this.state.disabilityExp
+                                                .checkedAuditory,
                                             name: "auditory",
                                             color: "primary",
                                             label: "Auditory disabilities"
                                         },
                                         {
-                                            checked: this.state.disabilityExp.checkedVision,
+                                            checked: this.state.disabilityExp
+                                                .checkedVision,
                                             name: "vision",
                                             color: "primary",
                                             label: "Vision disabilities"
                                         },
                                         {
-                                            checked: this.state.disabilityExp.checkedMental,
+                                            checked: this.state.disabilityExp
+                                                .checkedMental,
                                             name: "mental",
                                             color: "primary",
                                             label: "Mental disabilities"
@@ -507,7 +522,8 @@ class AssistantForm extends React.Component {
                                     label: "Occasional assistance"
                                 },
                                 {
-                                    checked: this.state.work.checkedPermanentExp,
+                                    checked: this.state.work
+                                        .checkedPermanentExp,
                                     name: "permanent",
                                     color: "primary",
                                     label: "Permanent assistance"
