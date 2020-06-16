@@ -20,6 +20,7 @@ import PrivateRoute from "./components/auth/PrivateRoute"
 
 import "./App.css";
 import Navbar from "./components/navigation/Navbar";
+import Mock from "./pages/Mock";
 
 require('dotenv').config();
 
@@ -33,6 +34,7 @@ function App() {
 						<Navbar/>
 						<main style={{ margin: "5%" }}>
 							<Switch>
+								<Route path="/mock" component={Mock}/>
 								<Route path="/login" component={Login}/>
 								<Route path="/signup" component={Signup}/>
 								<Route path="/assistantForm" component={AssistantForm}/>
