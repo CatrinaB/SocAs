@@ -5,15 +5,16 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyles from './styles';
+import DashboardComment from "../DashboardComment/DashboardComment";
 
-const DashboardCard = ({ user, content, date }) => {
+const DashboardCard = ({ user, content, date, comments }) => {
 	const classes = useStyles();
 
 	return (
 		<Paper className={classes.paperContainer}>
 			<div className={classes.postDetailsContainer}>
 				<Avatar className={classes.avatar} alt="Avatar image" src={user.profileImageSource}/>
-				<div className={classes.name}>{user.fullName}</div>
+				<div className={classes.name}><strong>{user.fullName}</strong></div>
 				<div className={classes.date}>{date}</div>
 			</div>
 			<div className={classes.content}>{content}</div>
@@ -25,6 +26,15 @@ const DashboardCard = ({ user, content, date }) => {
 					<AddCommentIcon/>
 				</IconButton>
 			</div>
+			{comments &&
+			<div>
+				{
+					comments.map((comment, i) => {
+						return <DashboardComment comment={comment}/>
+					})
+				}
+			</div>
+			}
 		</Paper>
 	)
 };

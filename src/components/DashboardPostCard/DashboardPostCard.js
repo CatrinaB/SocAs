@@ -17,5 +17,3 @@ const DashboardPostCard = () => {
 };
 
 export default DashboardPostCard;
-
-

@@ -15,6 +15,24 @@ const Mock = () => {
 					user={{ fullName: "Herbert Betts", profileImageSource: "http://localhost:3000/avatars/u1.jpg" }}
 					content={"Did we move to the tropics and I'm not aware? Only rain, sun, heat, and rain..."}
 					date={"17.06.2020 23:45"}
+					comments={[
+						{
+							user: {
+								fullName: 'Patricia O\'Well',
+								profileImageSource: "http://localhost:3000/avatars/u12.jpg"
+							},
+							comment: 'Yeah, I know! Cannot drink a beer properly!',
+							date: '17.06.2020 23:58'
+						},
+						{
+							user: {
+								fullName: 'Suzzy Osbourne',
+								profileImageSource: "http://localhost:3000/avatars/u13.jpg"
+							},
+							comment: 'Hey, think about the swimming pool! :D',
+							date: '18.06.2020 02:58'
+						}
+					]}
 				/>
 				<DashboardCard
 					user={{ fullName: "Ayush Rocha", profileImageSource: "http://localhost:3000/avatars/u2.jpg" }}
@@ -33,7 +51,10 @@ const Mock = () => {
 					date={"16.06.2020 20:33"}
 				/>
 				<DashboardCard
-					user={{ fullName: "Rosemary Tomlinson", profileImageSource: "http://localhost:3000/avatars/u5.jpg" }}
+					user={{
+						fullName: "Rosemary Tomlinson",
+						profileImageSource: "http://localhost:3000/avatars/u5.jpg"
+					}}
 					content={"I have a bunch of coloured pencils and some pens my daughter \"is too old\" for, I'm pretty sure they were never used. Do you need them or know anyone who does?"}
 					date={"16.06.2020 13:45"}
 				/>
@@ -44,14 +65,22 @@ const Mock = () => {
 				/>
 			</div>
 			<div>
-				<FriendCard user={{ fullName: "Vikki Rowland", profileImageSource: "http://localhost:3000/avatars/u6.jpg" }}/>
-				<FriendCard user={{ fullName: "Benito Villalobos", profileImageSource: "http://localhost:3000/avatars/u8.jpg" }}/>
-				<FriendCard user={{ fullName: "Minnie Driscoll", profileImageSource: "http://localhost:3000/avatars/u7.jpg" }}/>
+				<FriendCard
+					user={{ fullName: "Vikki Rowland", profileImageSource: "http://localhost:3000/avatars/u6.jpg" }}/>
+				<FriendCard user={{
+					fullName: "Benito Villalobos",
+					profileImageSource: "http://localhost:3000/avatars/u8.jpg"
+				}}/>
+				<FriendCard
+					user={{ fullName: "Minnie Driscoll", profileImageSource: "http://localhost:3000/avatars/u7.jpg" }}/>
 			</div>
 			<div>
-				<FriendRequestCard user={{ fullName: "Rachel Mcclure", profileImageSource: "http://localhost:3000/avatars/u11.jpg" }}/>
-				<FriendRequestCard user={{ fullName: "Yusuf Schmitt", profileImageSource: "http://localhost:3000/avatars/u9.jpg" }}/>
-				<FriendRequestCard user={{ fullName: "Glenn Farrow", profileImageSource: "http://localhost:3000/avatars/u10.jpg" }}/>
+				<FriendRequestCard
+					user={{ fullName: "Rachel Mcclure", profileImageSource: "http://localhost:3000/avatars/u11.jpg" }}/>
+				<FriendRequestCard
+					user={{ fullName: "Yusuf Schmitt", profileImageSource: "http://localhost:3000/avatars/u9.jpg" }}/>
+				<FriendRequestCard
+					user={{ fullName: "Glenn Farrow", profileImageSource: "http://localhost:3000/avatars/u10.jpg" }}/>
 			</div>
 		</Container>
 	)
