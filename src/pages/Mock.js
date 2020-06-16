@@ -1,11 +1,13 @@
 import React from "react";
 import DashboardCard from "../components/DaschboardCard";
 import { Container } from "@material-ui/core";
+import DashboardPostCard from "../components/DashboardPostCard";
 
 
 const Mock = () => {
 	return (
 		<Container>
+			<DashboardPostCard/>
 			<DashboardCard
 				user={{ fullName: "Catrina Bodean", profileImageSource: "http://localhost:3000/avatars/cati.jpg" }}
 				content={"I need some help, please!"}

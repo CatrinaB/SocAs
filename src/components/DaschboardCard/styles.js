@@ -1,4 +1,4 @@
-import {makeStyles} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
 	paperContainer: {
@@ -6,6 +6,7 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
+		padding: theme.spacing(2),
 	},
 	postDetailsContainer: {
 		display: 'flex',
