@@ -5,10 +5,8 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
 import BlockIcon from '@material-ui/icons/Block';
-import MessageIcon from '@material-ui/icons/Message';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-const FriendCard = ({ user }) => {
+const FriendRequestCard = ({ user }) => {
 	const classes = useStyles();
 
 	return (
@@ -19,14 +17,14 @@ const FriendCard = ({ user }) => {
 			</div>
 			<div className={classes.subPaper}>
 				<IconButton color="secondary" component="span">
-					<MessageIcon/>
+					<AddIcon/>
 				</IconButton>
 				<IconButton color="secondary" component="span">
-					<DeleteForeverIcon/>
+					<BlockIcon/>
 				</IconButton>
 			</div>
 		</Paper>
 	);
 };
 
-export default FriendCard;
+export default FriendRequestCard;

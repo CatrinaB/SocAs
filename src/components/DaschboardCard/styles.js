@@ -27,7 +27,9 @@ const useStyles = makeStyles(theme => ({
 		margin: theme.spacing(1),
 	},
 	content: {
-		margin: theme.spacing(1),
+		margin: theme.spacing(3),
+		paddingLeft: theme.spacing(4),
+		paddingRight: theme.spacing(4)
 	},
 	avatar: {
 		width: theme.spacing(6),
