@@ -4,7 +4,7 @@ import { Container } from "@material-ui/core";
 import DashboardPostCard from "../components/DashboardPostCard";
 import FriendCard from "../components/FriendCard";
 import FriendRequestCard from "../components/FriendRequestCard";
-
+import Chat from "../components/Chat"
 
 const Mock = () => {
 	return (
@@ -81,6 +81,9 @@ const Mock = () => {
 					user={{ fullName: "Yusuf Schmitt", profileImageSource: "http://localhost:3000/avatars/u9.jpg" }}/>
 				<FriendRequestCard
 					user={{ fullName: "Glenn Farrow", profileImageSource: "http://localhost:3000/avatars/u10.jpg" }}/>
+			</div>
+			<div>
+				<Chat/>
 			</div>
 		</Container>
 	)
