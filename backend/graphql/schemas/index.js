@@ -92,13 +92,30 @@ module.exports = buildSchema(`
         stateAid: Boolean
         helpType: String
         reason: String
-    }
+	}
+	
+	type Post {
+		_id: ID!
+		authorID: String!
+		authorName: String!
+		text: String!
+		datePosted: String!
+	}
+
+	input NewPostInput {
+		_id: ID!
+		authorID: String!
+		authorName: String!
+		text: String!
+		datePosted: String!
+	}
 
     type RootQuery {
         login(email: String!, password: String!): AuthData
 		getAssistant: Assistant
 		getDisabled: DisabledPerson
-        getUser: User
+		getUser: User
+		getPosts(authorID: String): Post
     }
 
     type RootMutation {
@@ -106,7 +123,8 @@ module.exports = buildSchema(`
         createAssistant(newAssistantInput: NewAssistantInput): Assistant
         updateAssistant(existingAssistantInput: ExistingAssistantInput): Assistant
         createPerson(newDisabledPersonInput: NewDisabledPersonInput): DisabledPerson
-        updatePerson(existingDisabledPersonInput: ExistingDisabledPersonInput): DisabledPerson
+		updatePerson(existingDisabledPersonInput: ExistingDisabledPersonInput): DisabledPerson
+		createPost(newPostInput: NewPostInput): Post
     }
 
     schema {
