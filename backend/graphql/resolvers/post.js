@@ -1,7 +1,9 @@
 const Post = require("../../models/post");
 const logger = require("../../utils/logger");
+const { loggers } = require("winston");
 
-const SERVICE_UNAVAILABLE_CREATE_POST = "Service unavailable: unable to create new post";
+const SERVICE_UNAVAILABLE_CREATE_POST =
+	"Service unavailable: unable to create new post";
 
 module.exports = {
 	createPost: async (args) => {
@@ -14,11 +16,10 @@ module.exports = {
 		);
 
 		const post = new Post({
-			_id: args.newPostInput._id,
 			authorID: args.newPostInput.authorID,
 			authorName: args.newPostInput.authorName,
 			text: args.newPostInput.text,
-			datePosted: args.newPostInput.datePosted
+			timePosted: args.newPostInput.timePosted,
 		});
 
 		let result;
@@ -32,31 +33,33 @@ module.exports = {
 		logger.debug("Post created successfully");
 
 		return {
-			...result._doc;
-		}
-	
+			...result._doc,
+		};
 	},
 
-	getPosts: async (args) => {
-		if (args !== null) {
-			logger.debug("Attempt to retrieve all posts");
+	getAllPosts: async () => {
+		logger.debug("Attempt to retrieve all posts");
 
-			try {
-				return await Post.find({}).limit(50);
-			} catch (err) {
-				logger.error(`Error occured while retrieving all posts: ${err}`);
-				throw new Error();
-			}
+		try {
+			return await Post.find({}).limit(50).sort({ timePosted: "desc" });
+		} catch (err) {
+			logger.error(`Error occured while retrieving all posts: ${err}`);
+			throw new Error();
 		}
-		else {
-			logger.debug(`Attempt to retrieve posts by user: ${args.authorID}`);
+	},
 
-			try{
-				return await Post.find({authorID: args.authorID}).limit(5);
-			} catch (err) {
-				logger.error(`Error occured while retrieveing posts of user: ${err}`)
-				throw new Error();
-			}
+	getPostsByAuthor: async (args) => {
+		logger.debug(`Attempt to retrieve posts by user: ${args.authorID}`);
+
+		try {
+			return await Post.find({ authorID: args.authorID })
+				.limit(5)
+				.sort({ timePosted: "desc" });
+		} catch (err) {
+			logger.error(
+				`Error occured while retrieveing posts of user: ${err}`
+			);
+			throw new Error();
 		}
-	}
+	},
 };

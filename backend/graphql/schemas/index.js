@@ -99,15 +99,14 @@ module.exports = buildSchema(`
 		authorID: String!
 		authorName: String!
 		text: String!
-		datePosted: String!
+		timePosted: String!
 	}
 
 	input NewPostInput {
-		_id: ID!
 		authorID: String!
 		authorName: String!
 		text: String!
-		datePosted: String!
+		timePosted: String!
 	}
 
     type RootQuery {
@@ -115,7 +114,8 @@ module.exports = buildSchema(`
 		getAssistant: Assistant
 		getDisabled: DisabledPerson
 		getUser: User
-		getPosts(authorID: String): Post
+		getAllPosts: [Post]
+		getPostsByAuthor(authorID: String!): [Post]
     }
 
     type RootMutation {
