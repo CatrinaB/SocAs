@@ -55,38 +55,6 @@ const mapStateToProps = state => {
         accountType: state.otherProfile.accountType,
         assistant: state.otherProfile.assistant,
         disabled: state.otherProfile.disabled
-        // user: {
-        //     error: null,
-        //     loading: false,
-        //     loaded: true,
-        //     accountType: 'assistant',
-        //     assistant: {
-        //         name: "Andreea Bunea",
-        //         gender: "Female",
-        //         employmentStatus: "Home Assistant at Carpatex",
-        //         dob: "13.07.1998",
-        //         experience: "Experience",
-        //         experienceTime: "10 years",
-        //         experienceType: ["Exp type 1","Exp type 2","Exp type 3",],
-        //         disabilityExp: ["Dis exp1","Dis exp2","Dis exp3"],
-        //         allotedTime: "5 years",
-        //         helpType: ["help type 1","help type 2","help type 3"],
-        //         reason: "No fuckin idea"
-        //     },
-        //     disabled: {
-        //         name: "Andreea Buna",
-        //         gender: "Female",
-        //         employmentStatus: "Unemployed",
-        //         dob: "13.07.1998",
-        //         disabilities: ["Probleme", "cu", "capul"],
-        //         gravity: "Foarte grav",
-        //         neededTime: "8 hrs",
-        //         experienceWithStrangers: false,
-        //         stateAid: true,
-        //         helpType: "Help type",
-        //         reason: "I need help .. ?"
-        //     }
-        // }
     };
 };
 

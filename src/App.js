@@ -22,6 +22,7 @@ import "./App.css";
 import Navbar from "./components/navigation/Navbar";
 import Mock from "./pages/Mock";
 import Profile from "./pages/Profile";
+import SearchPeople from "./pages/SearchPeople";
 
 require('dotenv').config();
 
@@ -44,6 +45,7 @@ function App() {
 								<PrivateRoute path="/account" component={Account}/>
 								<Route path="/logout" component={Logout}/>
 								<Route exact path="/profile/:uid" component={Profile}/>
+								<Route exact path="/search" component={SearchPeople}/>
 								<Redirect to="/login"/>
 							</Switch>
 						</main>
