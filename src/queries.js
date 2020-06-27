@@ -9,6 +9,11 @@ export const getAllPosts = (element) => {
 				authorName
 				text
 				timePosted
+				comments {
+					authorName
+					text
+					timeCommented
+				}
 			}
 		}`
     };
@@ -79,6 +84,44 @@ export const createPost = (text) => {
         //     console.log(resData);
         // })
         .then(window.location.reload())
+        .catch((err) => {
+            logger.error(err);
+        });
+};
+
+export const addComment = (text) => {
+    let request = {
+        query: `mutation{
+			createComment(newCommentInput:{postID: "5ef629e134b4fd65bc0173ee", authorID: "5ec66e292cbc165084d7003f", authorName: "lele", text: "${text}", timeCommented: "${new Date().toISOString()}"}){
+			  text
+			  authorName
+			}
+		  }`
+    };
+
+    fetch(process.env.REACT_APP_GRAPHQL_ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((res) => {
+            if (res.status !== 200 && res.status !== 201) {
+                console.log(
+                    `Error response for adding new comment: ${JSON.stringify(
+                        res.body,
+                        null,
+                        2
+                    )}`
+                );
+                throw new Error("Something went wrong!");
+            }
+            return res.json();
+        })
+        .then((resData) => {
+            console.log();
+        })
         .catch((err) => {
             logger.error(err);
         });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,8 +6,15 @@ import AddCommentIcon from "@material-ui/icons/AddComment";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import useStyles from "./styles";
 import DashboardComment from "../DashboardComment/DashboardComment";
+import DashboardNewComment from "../DashboardNewComment";
 
-const DashboardCard = ({ author, text, timePosted, comments }) => {
+const DashboardCard = ({
+    author,
+    text,
+    timePosted,
+    comments,
+    rerenderParent
+}) => {
     const classes = useStyles();
 
     return (
@@ -39,6 +46,7 @@ const DashboardCard = ({ author, text, timePosted, comments }) => {
                     })}
                 </div>
             )}
+            <DashboardNewComment rerenderParent={rerenderParent} />
         </Paper>
     );
 };

@@ -16,6 +16,10 @@ class Dashboard extends React.Component {
         getAllPosts(this);
     }
 
+    rerenderParent = () => {
+        getAllPosts(this);
+    };
+
     render() {
         return (
             <Container>
@@ -32,6 +36,8 @@ class Dashboard extends React.Component {
                                 }}
                                 text={post.text}
                                 timePosted={post.timePosted}
+                                comments={post.comments}
+                                rerenderParent={this.rerenderParent}
                             />
                         );
                     })}
