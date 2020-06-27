@@ -18,6 +18,10 @@ const postSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	comments: {
+		type: Array,
+		required: false,
+	},
 });
 
 module.exports = mongoose.model("Post", postSchema);

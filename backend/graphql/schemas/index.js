@@ -100,6 +100,7 @@ module.exports = buildSchema(`
 		authorName: String!
 		text: String!
 		timePosted: String!
+		comments: [Comment]
 	}
 
 	input NewPostInput {
@@ -109,6 +110,22 @@ module.exports = buildSchema(`
 		timePosted: String!
 	}
 
+	type Comment {
+		_id: ID!
+		authorID: String!
+		authorName: String!
+		text: String!
+		timeCommented: String!
+	}
+
+	input NewCommentInput {
+		postID: String!
+		authorID: String!
+		authorName: String!
+		text: String!
+		timeCommented: String!
+	}
+
     type RootQuery {
         login(email: String!, password: String!): AuthData
 		getAssistant: Assistant
@@ -116,6 +133,7 @@ module.exports = buildSchema(`
 		getUser: User
 		getAllPosts: [Post]
 		getPostsByAuthor(authorID: String!): [Post]
+		getAllComments(postID: String!): [Comment]
     }
 
     type RootMutation {
@@ -125,6 +143,7 @@ module.exports = buildSchema(`
         createPerson(newDisabledPersonInput: NewDisabledPersonInput): DisabledPerson
 		updatePerson(existingDisabledPersonInput: ExistingDisabledPersonInput): DisabledPerson
 		createPost(newPostInput: NewPostInput): Post
+		createComment(newCommentInput: NewCommentInput): Comment
     }
 
     schema {
