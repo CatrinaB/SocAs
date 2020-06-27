@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const logger = require("../../utils/logger");
 const disabledPerson = require("../../models/disabled-person");
+const { ca } = require("date-fns/locale");
 
 // Todo: Check if it is the right approach
 const BCRYPT_SALT = 12;
@@ -145,7 +146,25 @@ module.exports = {
 			disabledPerson: disabledPerson
 		}
 	},
-	searchUsers: async ({namePrefix}) => {
+	searchUsers: async ({emailLike}) => {
+			logger.debug(`Retrieving users with email like ${emailLike}`);
 
+			let allUsers = [];
+
+			try {
+				allUsers = await User.find({});
+			} catch(err) {
+				logger.error(`Something went wrong: ${err}`);
+			}
+
+			const searchedUsers = [];
+
+			allUsers.forEach((user) => {
+				if (user.email.includes(emailLike)) {
+					searchedUsers.push(user);
+				}
+			});
+
+			return searchedUsers;
 	}
 };

@@ -122,7 +122,7 @@ module.exports = buildSchema(`
 		getAllPosts: [Post]
         getPostsByAuthor(authorID: String!): [Post]
         getUserProfile(uid: String!): UserProfile
-        searchUsers(prefix: String!): [UserProfile]
+        searchUsers(emailLike: String!): [User]
     }
 
     type RootMutation {
