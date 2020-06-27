@@ -1,7 +1,10 @@
 const User = require("../../models/user");
+const Asssistant = require("../../models/assistant");
+const DisabledPerson = require("../../models/disabled-person");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const logger = require("../../utils/logger");
+const disabledPerson = require("../../models/disabled-person");
 
 // Todo: Check if it is the right approach
 const BCRYPT_SALT = 12;
@@ -119,5 +122,30 @@ module.exports = {
 			logger.error(`Error occurred while searching for user: ${err}`);
 			throw new Error(SERVICE_UNAVAILABLE_GET_USER);
 		}
+	},
+	getUserProfile: async ({uid}) => {
+		logger.debug(`Retrieving user with uid=${uid}`);
+
+		let assistantUser;
+		try {
+			assistantUser = await Asssistant.findOne({ _id: uid });
+		} catch (err) {
+			logger.error(`Something went wrong: ${err}`);
+		}
+
+		let disabledPerson;
+		try {
+			disabledPerson = await DisabledPerson.findOne({ _id: uid });
+		} catch (err) {
+			logger.error(`Something went wrong: ${err}`);
+		}
+
+		return {
+			assistant: assistantUser,
+			disabledPerson: disabledPerson
+		}
+	},
+	searchUsers: async ({namePrefix}) => {
+
 	}
 };
