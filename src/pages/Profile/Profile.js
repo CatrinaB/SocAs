@@ -5,6 +5,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import AssistantProfileCard from "../../components/AssistantProfileCard";
 import DisabledProfileCard from "../../components/DisabledProfileCard";
 import { loadUser } from "../../redux/actions/user-actions";
+import Alert from '@material-ui/lab/Alert';
+import Container from '@material-ui/core/Container';
 
 const Profile = ({ loadUser, ...props }) => {
     const classes = useStyles();
@@ -13,18 +15,28 @@ const Profile = ({ loadUser, ...props }) => {
         loadUser(props.match.params.uid);
     }, []);
 
+    console.log(props);
+
     if (props.error !== null) {
-        return <div>Error: {props.user.error}</div>
+        return (
+            <Container>
+                <Alert severity="warning">
+                    Whoooooops: {props.error}
+                </Alert>
+            </Container>
+        );
     }
-    else if (props.loading === true) {
+    if (props.loading === true) {
         return <CircularProgress />
-    } else if (props.loaded && props.accountType === "assistant") {
-        return <AssistantProfileCard assistant={props.assistant} />;
-    } else if (props.loaded) {
-        return <DisabledProfileCard disabled={props.disabled} />;
-    } else {
-        return <div>None</div>
     }
+    if (props.loaded && props.accountType === "assistant") {
+        return <AssistantProfileCard assistant={props.assistant} />;
+    }
+    if (props.loaded) {
+        return <DisabledProfileCard disabled={props.disabled} />;
+    }
+    return <div>None</div>
+
 };
 
 const mapDispatchToProps = dispatch => {

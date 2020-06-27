@@ -33,7 +33,7 @@ const AssistantProfileCard = ({ assistant, ...props }) => {
                     <strong>Experience time:</strong> {assistant.experienceTime || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Experience type:</strong> {assistant.experienceType ?
+                    <strong>Experience type:</strong> {assistant.experienceType && assistant.experienceType.length > 0 ?
                         assistant.experienceType.map((value, index) => {
                             return `${value} `;
                         })
@@ -42,7 +42,7 @@ const AssistantProfileCard = ({ assistant, ...props }) => {
                     }
                 </div>
                 <div className={classes.item}>
-                    <strong>Disability experience:</strong> {assistant.disabilityExp ?
+                    <strong>Disability experience:</strong> {assistant.disabilityExp && assistant.disabilityExp.length > 0 ?
                         assistant.disabilityExp.map((value, index) => {
                             return `${value} `;
                         })
@@ -54,7 +54,7 @@ const AssistantProfileCard = ({ assistant, ...props }) => {
                     <strong>Alloted time:</strong> {assistant.allotedTime || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Help type:</strong> {assistant.helpType ?
+                    <strong>Help type:</strong> {assistant.helpType && assistant.helpType.length > 0 ?
                         assistant.helpType.map((value, index) => {
                             return `${value} `;
                         })

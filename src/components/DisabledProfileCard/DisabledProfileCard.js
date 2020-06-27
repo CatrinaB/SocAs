@@ -18,29 +18,29 @@ const DisabledProfileCard = ({ disabled, ...props }) => {
                     DISABLED
                 </h1>
                 <div className={classes.item}>
-                    <strong>Name:</strong> {disabled.name}
+                    <strong>Name:</strong> {disabled.name || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Gender:</strong> {disabled.gender}
+                    <strong>Gender:</strong> {disabled.gender || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Date of birth:</strong> {disabled.dob}
+                    <strong>Date of birth:</strong> {disabled.dob || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Employment status:</strong> {disabled.employmentStatus}
+                    <strong>Employment status:</strong> {disabled.employmentStatus || "N/A"}
                 </div>
                 <div className={classes.item}>
                     <strong>Disabilities:</strong> {
                         disabled.disabilities.map((value, index) => {
-                            return value;
+                            return `${value} `;
                         })
                     }
                 </div>
                 <div className={classes.item}>
-                    <strong>Gravity:</strong> {disabled.gravity}
+                    <strong>Gravity:</strong> {disabled.gravity || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Needed time:</strong> {disabled.neededTime}
+                    <strong>Needed time:</strong> {disabled.neededTime || "N/A"}
                 </div>
                 <div className={classes.item}>
                     <strong>Experienced with strangers:</strong> {disabled.experienceWithStrangers ? "Yes" : "No"}
@@ -50,10 +50,10 @@ const DisabledProfileCard = ({ disabled, ...props }) => {
                     <strong>State aid:</strong> {disabled.stateAid ? "Yes" : "No"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Help type:</strong> {disabled.helpType}
+                    <strong>Help type:</strong> {disabled.helpType || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Reason:</strong> {disabled.reason}
+                    <strong>Reason:</strong> {disabled.reason || "N/A"}
                 </div>
                 <Button variant="contained" color="secondary">
                     Send friend request

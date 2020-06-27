@@ -131,14 +131,14 @@ module.exports = {
 		try {
 			assistantUser = await Asssistant.findOne({ _id: uid });
 		} catch (err) {
-			logger.error(`Something went wrong: ${err}`);
+			logger.warn(`Something went wrong: ${err}`);
 		}
 
 		let disabledPerson;
 		try {
 			disabledPerson = await DisabledPerson.findOne({ _id: uid });
 		} catch (err) {
-			logger.error(`Something went wrong: ${err}`);
+			logger.warn(`Something went wrong: ${err}`);
 		}
 
 		return {

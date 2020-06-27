@@ -57,16 +57,25 @@ export const loadUser = (uid) => {
                     console.log(resData);
 
                     const assistant = resData.data.getUserProfile.assistant;
-                    const disabled = resData.data.getUserProfile.disabled;
+                    const disabled = resData.data.getUserProfile.disabledPerson;
 
-                    dispatch({
-                        type: 'OTHER_PROFILE_LOADED',
-                        data: {
-                            accountType: assistant === null ? "disabled" : "assistant",
-                            assistant: assistant,
-                            disabled: disabled
-                        }
-                    });
+                    if (assistant === null && disabled === null) {
+                        dispatch({
+                            type: 'OTHER_PROFILE_ERROR',
+                            data: {
+                                error: "No user found!"
+                            }
+                        });
+                    } else {
+                        dispatch({
+                            type: 'OTHER_PROFILE_LOADED',
+                            data: {
+                                accountType: assistant === null ? "disabled" : "assistant",
+                                assistant: assistant,
+                                disabled: disabled
+                            }
+                        });
+                    }
                 }
             });
     };
