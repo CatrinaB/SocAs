@@ -60,7 +60,7 @@ const mapStateToProps = state => {
                 helpType: ["help type 1","help type 2","help type 3"],
                 reason: "No fuckin idea"
             },
-            disabledPerson: {
+            disabled: {
                 name: "Andreea Buna",
                 gender: "Female",
                 employmentStatus: "Unemployed",
