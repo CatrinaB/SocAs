@@ -18,46 +18,52 @@ const AssistantProfileCard = ({ assistant, ...props }) => {
                     ASSISTANT
                 </h1>
                 <div className={classes.item}>
-                    <strong>Name:</strong> {assistant.name}
+                    <strong>Name:</strong> {assistant.name || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Gender:</strong> {assistant.gender}
+                    <strong>Gender:</strong> {assistant.gender || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Date of birth:</strong> {assistant.dob}
+                    <strong>Date of birth:</strong> {assistant.dob || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Experience:</strong> {assistant.experience}
+                    <strong>Experience:</strong> {assistant.experience || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Experience time:</strong> {assistant.experienceTime}
+                    <strong>Experience time:</strong> {assistant.experienceTime || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Experience type:</strong> {
+                    <strong>Experience type:</strong> {assistant.experienceType ?
                         assistant.experienceType.map((value, index) => {
-                            return value;
+                            return `${value} `;
                         })
+                        :
+                        "N/A"
                     }
                 </div>
                 <div className={classes.item}>
-                    <strong>Disability experience:</strong> {
+                    <strong>Disability experience:</strong> {assistant.disabilityExp ?
                         assistant.disabilityExp.map((value, index) => {
-                            return value;
+                            return `${value} `;
                         })
+                        :
+                        "N/A"
                     }
                 </div>
                 <div className={classes.item}>
-                    <strong>Alloted time:</strong> {assistant.allotedTime}
+                    <strong>Alloted time:</strong> {assistant.allotedTime || "N/A"}
                 </div>
                 <div className={classes.item}>
-                    <strong>Help type:</strong> {
+                    <strong>Help type:</strong> {assistant.helpType ?
                         assistant.helpType.map((value, index) => {
-                            return value;
+                            return `${value} `;
                         })
+                        :
+                        "N/A"
                     }
                 </div>
                 <div className={classes.item}>
-                    <strong>Reason:</strong> {assistant.reason}
+                    <strong>Reason:</strong> {assistant.reason || "N/A"}
                 </div>
                 <Button variant="contained" color="secondary">
                     Send friend request
