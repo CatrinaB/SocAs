@@ -3,7 +3,7 @@ import {makeStyles} from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
-        direction: 'column'
+        direction: 'row'
     },
     searchItem: {
         display: 'flex',

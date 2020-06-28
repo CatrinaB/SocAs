@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import { searchUsers } from "../../redux/actions/search-actions";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
+import SearchUserCard from "../../components/SearchUserCard";
 
 const SearchPeople = ({searchUsers, error, loading, loaded, users, ...props}) => {
     const classes = useStyles();
@@ -46,11 +47,11 @@ const SearchPeople = ({searchUsers, error, loading, loaded, users, ...props}) =>
                             Whoooooops: {props.error}
                         </Alert>
                     }
-                    {/* {loaded && users &&
-                        users.map((value, index) => {
-                            return <div>{value}</div>;
+                   {users &&
+                        users.map((user, index) => {
+                            return <SearchUserCard key={`searched_user${index}`} user={user}/>
                         })
-                    } */}
+                   }
                 </div>
             </Paper>
         </Container>
