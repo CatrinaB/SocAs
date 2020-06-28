@@ -7,7 +7,8 @@ const useStyles = makeStyles(theme => ({
     },
     searchItem: {
         display: 'flex',
-        direction: 'column'
+        direction: 'column',
+        padding: theme.spacing(1)
     },
     resultsItem: {
 
