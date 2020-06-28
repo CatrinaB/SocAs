@@ -28,6 +28,7 @@ const SearchPeople = ({searchUsers, error, loading, loaded, users, ...props}) =>
             <Paper className={classes.container}>
                 <div className={classes.searchItem}>
                     <TextField
+                        className={classes.searchTextField}
                         label="Email"
                         value={email}
                         onChange={onChangeEmail} />
@@ -35,7 +36,7 @@ const SearchPeople = ({searchUsers, error, loading, loaded, users, ...props}) =>
                         variant="contained"
                         color="secondary"
                         onClick={onSearchClick}>
-                        Send users by
+                        Search users
                     </Button>
                 </div>
                 <div className={classes.resultsItem}>

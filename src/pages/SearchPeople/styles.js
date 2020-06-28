@@ -3,12 +3,17 @@ import {makeStyles} from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
-        direction: 'row'
+        flexDirection: 'column'
     },
     searchItem: {
         display: 'flex',
-        direction: 'column',
-        padding: theme.spacing(1)
+        direction: 'row',
+        padding: theme.spacing(2),
+        justifyContent: 'space-between'
+    },
+    searchTextField: {
+        flexGrow: 1,
+        marginRight: theme.spacing(2)
     },
     resultsItem: {
 
