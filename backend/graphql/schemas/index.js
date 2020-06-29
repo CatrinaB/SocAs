@@ -38,6 +38,11 @@ module.exports = buildSchema(`
         reason: String
     }
 
+    type UserProfile {
+        assistant: Assistant
+        disabledPerson: DisabledPerson
+    }
+
     type AuthData {
         userId: ID!,
         token: String!,
@@ -93,7 +98,7 @@ module.exports = buildSchema(`
         helpType: String
         reason: String
 	}
-	
+
 	type Post {
 		_id: ID!
 		authorID: String!
@@ -133,7 +138,9 @@ module.exports = buildSchema(`
 		getDisabled(userId: String!): DisabledPerson
 		getUser(userId: String!): User
 		getAllPosts: [Post]
-		getPostsByAuthor(authorID: String!): [Post]
+        getPostsByAuthor(authorID: String!): [Post]
+        getUserProfile(uid: String!): UserProfile
+        searchUsers(emailLike: String!): [User]
     }
 
     type RootMutation {
