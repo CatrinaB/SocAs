@@ -34,7 +34,7 @@ class AssistantAccount extends React.Component {
         const request = {
             query: `
                 query {
-                    getAssistant {
+                    getAssistant(userId: "${this.props.userId}") {
 						name
 						gender
 						dob
@@ -383,7 +383,8 @@ class AssistantAccount extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isAssistant: true,
-        token: state.auth.token
+		token: state.auth.token,
+		userId: state.auth.userId
     };
 };
 

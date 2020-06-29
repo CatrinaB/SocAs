@@ -9,7 +9,10 @@ const store = createStore(rootReducer, loadState(), composeWithDevTools(applyMid
 store.subscribe(() => {
 	saveState({
 		auth: {
-			token: store.getState().auth.token
+			token: store.getState().auth.token,
+			userId: store.getState().auth.userId,
+			name: store.getState().auth.name,
+			tokenExpiration: store.getState().auth.tokenExpiration
 		}
 	});
 });

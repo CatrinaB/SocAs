@@ -19,7 +19,7 @@ const assistantSchema = new Schema({
 		required: false,
 	},
 	experience: {
-		type: String,
+		type: Boolean,
 		required: false,
 	},
 	experienceTime: {

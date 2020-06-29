@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
@@ -7,8 +7,11 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import useStyles from "./styles";
 import DashboardComment from "../DashboardComment/DashboardComment";
 import DashboardNewComment from "../DashboardNewComment";
+// import { getAllCommentsFromPost } from "../../queries";
+// import logger from "../../utils/logger";
 
 const DashboardCard = ({
+    postID,
     author,
     text,
     timePosted,
@@ -16,6 +19,17 @@ const DashboardCard = ({
     rerenderParent
 }) => {
     const classes = useStyles();
+
+    // const [commentsState, setCommentsState] = useState(comments);
+
+    // logger.debug(commentsState);
+
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         let qresult = getAllCommentsFromPost(postID);
+    //         setCommentsState(qresult);
+    //     }, 1000);
+    // }, [postID]);
 
     return (
         <Paper className={classes.paperContainer}>
@@ -46,7 +60,10 @@ const DashboardCard = ({
                     })}
                 </div>
             )}
-            <DashboardNewComment rerenderParent={rerenderParent} />
+            <DashboardNewComment
+                postID={postID}
+                rerenderParent={rerenderParent}
+            />
         </Paper>
     );
 };

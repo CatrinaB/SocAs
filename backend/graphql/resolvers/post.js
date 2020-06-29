@@ -1,12 +1,14 @@
 const Post = require("../../models/post");
 const logger = require("../../utils/logger");
-const { loggers } = require("winston");
+// const { PubSub } = require("graphql-yoga");
 
 const SERVICE_UNAVAILABLE_CREATE_POST =
 	"Service unavailable: unable to create new post";
 const SERVICE_UNAVAILABLE_ADD_COMMENT =
 	"Service unavailable: unable to add comment to post";
 const POST_NOT_EXISTS = "Post does not exist";
+
+// const pubsub = new PubSub();
 
 module.exports = {
 	createPost: async (args) => {
@@ -23,7 +25,7 @@ module.exports = {
 			authorName: args.newPostInput.authorName,
 			text: args.newPostInput.text,
 			timePosted: args.newPostInput.timePosted,
-			comments: [""],
+			comments: [],
 		});
 
 		let result;
@@ -148,7 +150,6 @@ module.exports = {
 
 	getAllComments: async (args) => {
 		logger.debug(`Attempt to retrieve comments of post: ${args.postID}`);
-
 		try {
 			const res = await Post.findById(args.postID);
 			logger.debug(`comments: ${JSON.stringify(res.comments)}`);
@@ -160,4 +161,10 @@ module.exports = {
 			throw new Error();
 		}
 	},
+
+	// checkComments: {
+	// 	subscribe: () => {
+	// 		pubsub.asyncIterator("newComment");
+	// 	},
+	// },
 };

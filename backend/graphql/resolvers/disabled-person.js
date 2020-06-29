@@ -88,20 +88,23 @@ module.exports = {
 			...result._doc,
 		};
 	},
-	getDisabled: async (args, req) => {
-		logger.debug("Attempt to retrieve disabled person details");
+	getDisabled: async (args) => {
+		// !!! params: args, req
 
-		logger.info(req);
 
-		if (!req.isAuth) {
-			logger.debug("Not authenticated");
-			throw new Error("Not authenticated");
-		}
+		// logger.debug("Attempt to retrieve disabled person details");
 
-		logger.info(req.userId);
+		// logger.info(req);
+
+		// if (!req.isAuth) {
+		// 	logger.debug("Not authenticated");
+		// 	throw new Error("Not authenticated");
+		// }
+
+		// logger.info(req.userId);
 
 		try {
-			return await DisabledPerson.findOne({ _id: req.userId });
+			return await DisabledPerson.findOne({ _id: args.userId });
 		} catch (err) {
 			logger.error(
 				`Error occurred while searching for disabled person: ${err}`

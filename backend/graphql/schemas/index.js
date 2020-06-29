@@ -65,7 +65,7 @@ module.exports = buildSchema(`
         gender: String
         employmentStatus: String
         dob: String
-        experience: String
+        experience: Boolean
         experienceTime: Int
 		experienceType: [String]
 		disabilityExp: [String]
@@ -100,7 +100,8 @@ module.exports = buildSchema(`
 		authorName: String!
 		text: String!
 		timePosted: String!
-		comments: [Comment]
+		comments: [Comment],
+		likes: Int
 	}
 
 	input NewPostInput {
@@ -128,12 +129,11 @@ module.exports = buildSchema(`
 
     type RootQuery {
         login(email: String!, password: String!): AuthData
-		getAssistant: Assistant
-		getDisabled: DisabledPerson
-		getUser: User
+		getAssistant(userId: String!): Assistant
+		getDisabled(userId: String!): DisabledPerson
+		getUser(userId: String!): User
 		getAllPosts: [Post]
 		getPostsByAuthor(authorID: String!): [Post]
-		getAllComments(postID: String!): [Comment]
     }
 
     type RootMutation {
@@ -144,10 +144,15 @@ module.exports = buildSchema(`
 		updatePerson(existingDisabledPersonInput: ExistingDisabledPersonInput): DisabledPerson
 		createPost(newPostInput: NewPostInput): Post
 		createComment(newCommentInput: NewCommentInput): Comment
-    }
+	}
+	
+	type RootSubscription {
+		checkComments(postID: String!): Comment
+	}
 
     schema {
         query: RootQuery
-        mutation: RootMutation
+		mutation: RootMutation
+		subscription: RootSubscription
     }
 `);

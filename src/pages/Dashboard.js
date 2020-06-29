@@ -2,7 +2,9 @@ import React from "react";
 import DashboardCard from "../components/DaschboardCard";
 import { Container } from "@material-ui/core";
 import DashboardPostCard from "../components/DashboardPostCard";
-import { getAllPosts } from "../queries";
+import { getAllPosts, getUserName } from "../queries";
+import {connect} from "react-redux"
+import logger from "../utils/logger";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -13,11 +15,14 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        getAllPosts(this);
+		getAllPosts(this);
+		console.log('fmmmmm', this.props.userId)
+		
+		getUserName(this.props.userType, this.props.userId);
     }
 
     rerenderParent = () => {
-        getAllPosts(this);
+		getAllPosts(this);
     };
 
     render() {
@@ -28,7 +33,8 @@ class Dashboard extends React.Component {
                     {this.state.posts.map((post) => {
                         return (
                             <DashboardCard
-                                key={Math.random() * 89}
+                                key={post._id}
+                                postID={post._id}
                                 author={{
                                     fullName: post.authorName,
                                     profileImageSource:
@@ -47,4 +53,12 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+    return {
+        userType: state.auth.userType,
+		userId: state.auth.userId
+    };
+};
+
+export default connect(mapStateToProps)(Dashboard);
+

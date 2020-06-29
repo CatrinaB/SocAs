@@ -103,18 +103,18 @@ module.exports = {
 			userType: loginUser.userType
 		};
 	},
-	getUser: async (args, req) => {
-		logger.debug("Attempt to retrieve user details");
+	getUser: async (args) => {
+		// logger.debug("Attempt to retrieve user details");
 
-		logger.info(req);
+		// logger.info(req);
 
-		if (!req.isAuth) {
-			logger.debug("Not authenticated")
-			throw new Error("Not authenticated")
-		}
+		// if (!req.isAuth) {
+		// 	logger.debug("Not authenticated")
+		// 	throw new Error("Not authenticated")
+		// }
 
 		try {
-			return await User.findOne({ _id: req.userId });
+			return await User.findOne({ _id: args.userId });
 		} catch (err) {
 			logger.error(`Error occurred while searching for user: ${err}`);
 			throw new Error(SERVICE_UNAVAILABLE_GET_USER);

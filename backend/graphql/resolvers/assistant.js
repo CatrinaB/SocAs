@@ -135,20 +135,25 @@ module.exports = {
 		});
 		return { ...result._doc };
 	},
-	getAssistant: async (args, req) => {
-		logger.debug("Attempt to retrieve assistant details");
+	getAssistant: async (args) => {
+		// !!! params: args, req
 
-		logger.info(req);
 
-		if (!req.isAuth) {
-			logger.debug("Not authenticated");
-			throw new Error("Not authenticated");
-		}
+		// logger.silly(`req ${req}`);
+		// console.log(req)
+		// logger.debug("Attempt to retrieve assistant details");
 
-		logger.info(req.userId);
+		// logger.info(req);
+
+		// if (!req.isAuth) {
+		// 	logger.debug("Not authenticated");
+		// 	throw new Error("Not authenticated");
+		// }
+
+		// logger.info(req.userId);
 
 		try {
-			return await Assistant.findOne({ _id: req.userId });
+			return await Assistant.findOne({ _id: args.userId });
 		} catch (err) {
 			logger.error(
 				`Error occurred while searching for assistant: ${err}`

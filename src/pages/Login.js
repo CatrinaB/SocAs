@@ -1,14 +1,10 @@
 import React from "react";
-import {
-    updateToken,
-    updateTokenExpiration,
-    updateUserType
-} from "../redux/actions/auth-actions";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailRounded from "@material-ui/icons/EmailRounded";
 import Lock from "@material-ui/icons/Lock";
+import { login } from "../queries";
 
 class Login extends React.Component {
     constructor(props) {
@@ -54,60 +50,8 @@ class Login extends React.Component {
     };
 
     onSubmit(e) {
-        e.preventDefault();
-        const email = this.state.email;
-        const password = this.state.password;
-        const request = {
-            query: `
-                query {
-                    login(email: "${email}", password: "${password}") {
-                        userId
-                        token
-                        tokenExpiration
-                        userType
-                    }
-                }
-            `
-        };
-        fetch(process.env.REACT_APP_GRAPHQL_ENDPOINT, {
-            method: "POST",
-            body: JSON.stringify(request),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then((res) => {
-                if (res.status !== 200 && res.status !== 201) {
-                    console.log(`Error response for login: ${res}`);
-                    throw new Error("Something went wrong!");
-                }
-                return res.json();
-            })
-            .then((resData) => {
-                console.log(`Login request result: `, resData);
-
-                if (resData.errors && resData.errors.length > 0) {
-                    let alertMessage = "";
-                    for (let error in resData.errors) {
-                        alertMessage += resData.errors[error].message + "\n";
-                    }
-                    throw new Error(alertMessage);
-                } else if (resData.data.login.token) {
-                    updateToken(resData.data.login.token);
-                    updateTokenExpiration(resData.data.login.tokenExpiration);
-                    updateUserType(resData.data.login.userType);
-                    this.props.history.push("/dashboard");
-                } else {
-                    throw new Error("Something went wrong!");
-                }
-            })
-            .catch((err) => {
-                this.setState({
-                    ...this.state,
-                    loginError: true,
-                    loginErrorMessage: err.message
-                });
-            });
+		e.preventDefault();
+		login(this);
     }
 
     render() {

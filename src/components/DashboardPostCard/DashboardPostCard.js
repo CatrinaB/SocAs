@@ -3,11 +3,15 @@ import Paper from "@material-ui/core/Paper";
 import { Button, TextField } from "@material-ui/core";
 import useStyles from "./styles";
 import { createPost } from "../../queries";
+import { useSelector } from "react-redux";
 
 const DashboardPostCard = () => {
     const classes = useStyles();
 
-    const [text, setText] = useState("");
+	const [text, setText] = useState("");
+	
+	const userID = useSelector(state => state.auth.userId);
+	const userName = useSelector(state => state.auth.name);
 
     const handleChange = (e) => {
         setText(e.target.value);
@@ -15,8 +19,7 @@ const DashboardPostCard = () => {
 
     const handleCreateNewPost = () => {
         let newText = text.replace(/[\n\r]/g, "");
-        console.log(newText);
-        createPost(newText);
+        createPost(userID, userName, newText);
     };
 
     return (

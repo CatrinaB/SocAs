@@ -36,14 +36,13 @@ class Account extends React.Component {
             ? (request = {
                   query: `
                 query {
-                    getAssistant() {
+                    getAssistant(userId: "${this.props.userId}") {
 						name
 						gender
 						dob
 						experience
-						status
                     }
-                    getUser() {
+                    getUser(userId: "${this.props.userId}") {
                     	email
                     }
                 }
@@ -52,7 +51,7 @@ class Account extends React.Component {
             : (request = {
                   query: `
                 query {
-                    getDisabled {
+                    getDisabled(userId: "${this.props.userID}") {
 						name
 						gender
 						dob
@@ -560,7 +559,8 @@ class Account extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isAssistant: state.auth.userType === "assistant" ? true : false,
-        token: state.auth.token
+		token: state.auth.token,
+		userId: state.auth.userId
     };
 };
 
