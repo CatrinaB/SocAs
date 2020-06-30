@@ -37,7 +37,11 @@ const DashboardCard = ({
                 <Avatar
                     className={classes.avatar}
                     alt="Avatar image"
-                    src={author.profileImageSource}
+                    src={
+                        author.fullName === "Catrina Bodean"
+                            ? "http://localhost:3000/avatars/u3.jpg"
+                            : "http://localhost:3000/avatars/u1.jpg"
+                    }
                 />
                 <div className={classes.name}>
                     <strong>{author.fullName}</strong>

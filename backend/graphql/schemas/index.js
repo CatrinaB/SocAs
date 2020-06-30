@@ -5,7 +5,10 @@ module.exports = buildSchema(`
         _id: ID!
         email: String!
         password: String!
-        userType: String!
+		userType: String!
+		friends: [Friend]
+		pending: [PendingRequest]
+		receivedRequests: [PendingRequest]
     }
 
     type Assistant {
@@ -20,7 +23,7 @@ module.exports = buildSchema(`
 		disabilityExp: [String]
         allottedTime: Int
         helpType: [String]
-        reason: String
+		reason: String
     }
 
     type DisabledPerson {
@@ -35,7 +38,7 @@ module.exports = buildSchema(`
         experienceWithStrangers: Boolean
         stateAid: Boolean
         helpType: String
-        reason: String
+		reason: String
     }
 
     type UserProfile {
@@ -132,11 +135,36 @@ module.exports = buildSchema(`
 		timeCommented: String!
 	}
 
+	type PendingRequest{
+		pendingId: String!,
+		pendingName: String!
+	}
+	
+	input PendingRequestInput{
+		userId: String!,
+		pendingId: String!,
+		pendingName: String!
+	}
+
+	type Friend{
+		friendId: String!,
+		friendName: String!
+	}
+	
+	input FriendInput{
+		userId: String!,
+		friendId: String!,
+		friendName: String!
+	}
+
     type RootQuery {
         login(email: String!, password: String!): AuthData
 		getAssistant(userId: String!): Assistant
 		getDisabled(userId: String!): DisabledPerson
 		getUser(userId: String!): User
+		getUserFriends(userId: String!): [Friend]
+		getUserPending(userId: String!): [PendingRequest]
+		getUserReceivedPending(userId: String!): [PendingRequest]
 		getAllPosts: [Post]
         getPostsByAuthor(authorID: String!): [Post]
         getUserProfile(uid: String!): UserProfile
@@ -151,6 +179,11 @@ module.exports = buildSchema(`
 		updatePerson(existingDisabledPersonInput: ExistingDisabledPersonInput): DisabledPerson
 		createPost(newPostInput: NewPostInput): Post
 		createComment(newCommentInput: NewCommentInput): Comment
+		addUserPending(pendingRequest: PendingRequestInput!): User
+		addUserReceivedPending(pendingRequest: PendingRequestInput!): User
+		addFriend(friendInput: FriendInput!): User
+		removePending(userId: String!, pendingId: String!): User
+		removeReceivedPending(userId: String!, pendingId: String!): User
 	}
 	
 	type RootSubscription {

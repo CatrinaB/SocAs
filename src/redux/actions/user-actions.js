@@ -1,6 +1,11 @@
+import { UPDATE_PROFILE_ID } from "./action-types";
+import store from "../store";
+
 export const loadUser = (uid) => {
     return async (dispatch, getState) => {
-        console.log("Loading user ACTION uid " + uid)
+        console.log("Loading user ACTION uid " + uid);
+
+        updateProfileId(uid);
 
         const request = {
             query: `
@@ -44,39 +49,47 @@ export const loadUser = (uid) => {
                 "Content-Type": "application/json"
             }
         }).then(async (res) => {
-                if (res.status !== 200 && res.status !== 201) {
+            if (res.status !== 200 && res.status !== 201) {
+                dispatch({
+                    type: "OTHER_PROFILE_ERROR",
+                    data: {
+                        error: JSON.stringify(res.body, null, 2)
+                    }
+                });
+            } else {
+                const resData = await res.json();
+
+                console.log(resData);
+
+                const assistant = resData.data.getUserProfile.assistant;
+                const disabled = resData.data.getUserProfile.disabledPerson;
+
+                if (assistant === null && disabled === null) {
                     dispatch({
-                        type: 'OTHER_PROFILE_ERROR',
+                        type: "OTHER_PROFILE_ERROR",
                         data: {
-                            error: JSON.stringify(res.body, null,2)
+                            error: "No user found!"
                         }
                     });
                 } else {
-                    const resData = await res.json();
-
-                    console.log(resData);
-
-                    const assistant = resData.data.getUserProfile.assistant;
-                    const disabled = resData.data.getUserProfile.disabledPerson;
-
-                    if (assistant === null && disabled === null) {
-                        dispatch({
-                            type: 'OTHER_PROFILE_ERROR',
-                            data: {
-                                error: "No user found!"
-                            }
-                        });
-                    } else {
-                        dispatch({
-                            type: 'OTHER_PROFILE_LOADED',
-                            data: {
-                                accountType: assistant === null ? "disabled" : "assistant",
-                                assistant: assistant,
-                                disabled: disabled
-                            }
-                        });
-                    }
+                    dispatch({
+                        type: "OTHER_PROFILE_LOADED",
+                        data: {
+                            accountType:
+                                assistant === null ? "disabled" : "assistant",
+                            assistant: assistant,
+                            disabled: disabled
+                        }
+                    });
                 }
-            });
+            }
+        });
     };
+};
+
+export const updateProfileId = (params) => {
+    return store.dispatch({
+        type: UPDATE_PROFILE_ID,
+        payload: params
+    });
 };

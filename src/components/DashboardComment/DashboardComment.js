@@ -11,7 +11,11 @@ const DashboardComment = ({ comment }) => {
                 <Avatar
                     className={classes.avatar}
                     alt="Avatar image"
-                    src="http://localhost:3000/avatars/u3.jpg"
+                    src={
+                        comment.authorName === "Catrina Bodean"
+                            ? "http://localhost:3000/avatars/u3.jpg"
+                            : "http://localhost:3000/avatars/u1.jpg"
+                    }
                 />
                 <div className={classes.name}>
                     <strong>{comment.authorName}</strong>
