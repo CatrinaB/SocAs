@@ -30,6 +30,12 @@ const Chat = () => {
 					text: '928-221-6170  Feel free to call me between 3 and 5 P.M.',
 					date: new Date(2020, 5, 16, 10, 24, 0),
 				},
+				{
+					position: 'left',
+					type: 'text',
+					text: 'Cool! Looking forward to talkint to you! Bye!',
+					date: new Date(2020, 5, 16, 10, 55, 0),
+				},
 			]} />
 	);
 };
