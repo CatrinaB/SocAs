@@ -29,6 +29,8 @@ import Mock from "./pages/Mock";
 import Profile from "./pages/Profile";
 import SearchPeople from "./pages/SearchPeople";
 import Friends from "./pages/Friends";
+import Messages from "./pages/Messages";
+import Recommendations from "./pages/Recommendations";
 
 require("dotenv").config();
 
@@ -76,6 +78,16 @@ function App() {
                                     exact
                                     path="/friends"
                                     component={Friends}
+                                />
+                                <PrivateRoute
+                                    exact
+                                    path="/recommendations"
+                                    component={Recommendations}
+                                />
+                                <PrivateRoute
+                                    exact
+                                    path="/messages"
+                                    component={Messages}
                                 />
                                 {store.getState().auth.token ? (
                                     <Redirect to="dashboard" />

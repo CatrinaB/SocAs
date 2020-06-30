@@ -21,6 +21,30 @@ const NavbarAuth = () => {
                 </Typography>
                 <Link
                     style={{ textDecoration: "none", color: "white" }}
+                    to="/messages"
+                >
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        className={styles.menuButton}
+                    >
+                        Messages
+                    </Button>
+                </Link>
+                <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="/recommendations"
+                >
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        className={styles.menuButton}
+                    >
+                        Recommandations
+                    </Button>
+                </Link>
+                <Link
+                    style={{ textDecoration: "none", color: "white" }}
                     to="/dashboard"
                 >
                     <Button
